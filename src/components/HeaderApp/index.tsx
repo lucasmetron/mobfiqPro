@@ -19,6 +19,7 @@ export default function HeaderApp() {
   return (
     <SafeAreaView>
       <S.container>{returnHeaderCorrect()}</S.container>
+      <S.line />
     </SafeAreaView>
   );
 }
