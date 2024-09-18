@@ -13,21 +13,21 @@ export const tabsRoutes = {
 };
 
 export const stacksHome = {
-  initial: "stacksHome-initial",
+  initial: "stacksHome-home",
 };
 
 export const stacksProfile = {
-  initial: "stacksProfile-initial",
+  initial: "stacksProfile-profile",
 };
 
 export const stacksCategories = {
-  initial: "stackscateogires-initial",
+  initial: "stackscateogires-categories",
 };
 
 export const stacksCart = {
-  initial: "stacksCart-initial",
+  initial: "stacksCart-cart",
 };
 
 export const stacksMore = {
-  initial: "stacksMore-initial",
+  initial: "stacksMore-more",
 };

@@ -9,7 +9,7 @@ const StackProfileNavigator = createStackNavigator();
 
 export default function StackProfile() {
   function isShowHeaderApp(nameRoute: string) {
-    return nameRoute.includes("stacksContent-") ? <HeaderApp /> : null;
+    return nameRoute.includes("stacksProfile-") ? <HeaderApp /> : null;
   }
 
   return (

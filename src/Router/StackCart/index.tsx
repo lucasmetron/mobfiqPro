@@ -10,7 +10,7 @@ const StackCartNavigator = createStackNavigator();
 
 export default function StackCart() {
   function isShowHeaderApp(nameRoute: string) {
-    return nameRoute.includes("stacksCollege-") ? <HeaderApp /> : null;
+    return nameRoute.includes("stacksCart-") ? <HeaderApp /> : null;
   }
 
   return (

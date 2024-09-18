@@ -103,6 +103,7 @@ export default function Tabs() {
         headerShown: false,
         tabBarLabel: deleteTypeNavigatorFromString(route.name),
         header: ({ route }) => {
+          console.log("route: ", route);
           return isShowHeaderApp(route.name);
         },
         headerStyle: {

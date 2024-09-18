@@ -9,7 +9,7 @@ const StackCategoriesNavigator = createStackNavigator();
 
 export default function StackCategories() {
   function isShowHeaderApp(nameRoute: string) {
-    return nameRoute.includes("stacksCollege-") ? <HeaderApp /> : null;
+    return nameRoute.includes("stackscateogires-") ? <HeaderApp /> : null;
   }
 
   return (
