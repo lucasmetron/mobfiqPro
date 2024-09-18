@@ -7,7 +7,6 @@ import HeaderDefault from "components/HeaderDefault";
 
 export default function HeaderApp() {
   const route = useRoute();
-  console.log("route: ", route);
 
   function returnHeaderCorrect() {
     switch (route.name) {
