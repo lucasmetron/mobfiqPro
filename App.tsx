@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import {
   useFonts,
@@ -8,9 +8,10 @@ import {
   Inter_700Bold,
 } from "@expo-google-fonts/inter";
 import * as SplashScreen from "expo-splash-screen";
+import Toast from "react-native-toast-message";
 
 import { color } from "styles/pallete";
-import { fontsName } from "styles/fonts";
+import Router from "Router";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Inter_400Regular, Inter_700Bold });
@@ -30,10 +31,12 @@ export default function App() {
         edges={["top", "bottom", "left", "right"]}
         onLayout={onLayputRootView}
       >
-        <View style={styles.container}>
-          <Text>Open up App.js to start working on your app!</Text>
-          <StatusBar style="auto" />
-        </View>
+        <Router />
+        <StatusBar
+          style="light"
+          backgroundColor={color.interface.backgroundColor}
+        />
+        <Toast position="top" topOffset={70} />
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -42,8 +45,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "flex-start",
     backgroundColor: color.interface.white,
   },
 });
