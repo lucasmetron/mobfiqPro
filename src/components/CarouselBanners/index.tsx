@@ -6,7 +6,7 @@ import { ModuleHomeSaveOnBackProps } from "types/ModuleHomeSaveOnBackProps";
 import * as S from "./styles";
 import { BannerCarouselProps } from "types/BannerCarouselProps";
 
-interface CarouselBanners {
+interface CarouselBannersProps {
   item: ModuleHomeSaveOnBackProps;
 }
 
@@ -16,7 +16,7 @@ interface BannerProps {
   animationValue: any;
 }
 
-export default function CarouselBanners({ item }: CarouselBanners) {
+export default function CarouselBanners({ item }: CarouselBannersProps) {
   const width = Dimensions.get("window").width;
   const [indexPhoto, setIndexPhoto] = useState(0);
 
