@@ -7,6 +7,8 @@ import { ModuleHomeSaveOnBackProps } from "types/ModuleHomeSaveOnBackProps";
 import CarouselBanners from "components/CarouselBanners";
 import IndividualBanner from "components/IndividualBanner";
 import Banners50_50 from "components/Banners50_50";
+import Banners3_3 from "components/Banners3_3";
+import Banners1_2 from "components/Banners1_2";
 
 export default function Home() {
   const { dataHome } = useContext(DataHomeContext);
@@ -17,8 +19,12 @@ export default function Home() {
         return <CarouselBanners key={item.Id} item={item} />;
       case 1:
         return <IndividualBanner key={item.Id} item={item} />;
+      case 6:
+        return <Banners3_3 key={item.Id} item={item} />;
       case 8:
         return <Banners50_50 key={item.Id} item={item} />;
+      case 10:
+        return <Banners1_2 key={item.Id} />;
 
       default:
         return <Text key={item.Id}>a fazer {item.Type}</Text>;
