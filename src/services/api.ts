@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from "../config";
 
 // Caso tenha alguma configuração de Headers e etc, coloque aqui
 // export const headers = {
@@ -7,6 +8,6 @@ import axios from "axios";
 
 // Requisições do sistema são feitas por essas constante
 export const api = axios.create({
-  baseURL: "https://sistema.idevangelho.com/",
+  baseURL: `${config.BASE_URL}`,
   // headers: headers
 });
