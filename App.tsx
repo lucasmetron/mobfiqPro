@@ -35,7 +35,7 @@ export default function App() {
         <DataHomeProvider>
           <Router />
           <StatusBar
-            style="light"
+            style="dark"
             backgroundColor={color.interface.backgroundColor}
           />
           <Toast position="top" topOffset={70} />

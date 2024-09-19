@@ -1,5 +1,5 @@
-import * as React from "react";
-import { Dimensions, Text, View } from "react-native";
+import React, { useState } from "react";
+import { Dimensions, ScrollView, View } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
 
 import { ModuleHomeSaveOnBackProps } from "types/ModuleHomeSaveOnBackProps";
@@ -17,24 +17,35 @@ interface BannerProps {
 }
 
 export default function CarouselBanners({ item }: CarouselBanners) {
-  console.log("item: ", item);
   const width = Dimensions.get("window").width;
+  const [indexPhoto, setIndexPhoto] = useState(0);
+
   return (
-    <S.container height={500}>
-      <Carousel
-        loop
-        width={width}
-        autoPlay={false}
-        data={item.Element.Banners}
-        scrollAnimationDuration={1000}
-        style={{ flex: 1, backgroundColor: "blue" }}
-        // onSnapToItem={(index) => console.log("current index:", index)}
-        renderItem={({ item }: BannerProps) => (
-          <S.item>
-            <S.image source={{ uri: item.Image }} resizeMode="stretch" />
-          </S.item>
-        )}
-      />
-    </S.container>
+    <ScrollView>
+      <S.container height={item.Element.Banners[0].Height / 3 || 500}>
+        <Carousel
+          loop
+          width={width}
+          autoPlay={true}
+          autoPlayInterval={item?.Element?.TransitionDelay || 5000}
+          data={item.Element.Banners}
+          scrollAnimationDuration={1000}
+          vertical={false}
+          onSnapToItem={(index) => {
+            setIndexPhoto(index);
+          }}
+          renderItem={({ item }: BannerProps) => (
+            <S.item>
+              <S.image source={{ uri: item.Image }} resizeMode="stretch" />
+            </S.item>
+          )}
+        />
+        <S.containerBalls>
+          {item.Element.Banners.map((item: BannerProps, i: number) => (
+            <S.ball key={i} isActive={i === indexPhoto} />
+          ))}
+        </S.containerBalls>
+      </S.container>
+    </ScrollView>
   );
 }
