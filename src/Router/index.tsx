@@ -7,8 +7,8 @@ import { getHome } from "utils/functions";
 import DataHomeContext from "context/useHomeContext";
 
 const Router: React.FC = () => {
-  const { setDataHome } = useContext(DataHomeContext);
-  const [isLoadData, setIsLoadData] = useState(false);
+  const { setDataHome, isLoadData, setIsLoadData } =
+    useContext(DataHomeContext);
 
   useEffect(() => {
     (async () => {

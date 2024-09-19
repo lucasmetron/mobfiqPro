@@ -29,7 +29,7 @@ export default function CarouselBanners({ item }: CarouselBannersProps) {
           autoPlay={true}
           autoPlayInterval={item?.Element?.TransitionDelay || 5000}
           data={item.Element.Banners}
-          scrollAnimationDuration={1000}
+          scrollAnimationDuration={900}
           vertical={false}
           onSnapToItem={(index) => {
             setIndexPhoto(index);

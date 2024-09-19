@@ -11,9 +11,10 @@ import Banners3_3 from "components/Banners3_3";
 import Banners1_2 from "components/Banners1_2";
 import Banner40_60 from "components/Banner40_60";
 import Banners60_40 from "components/Banners60_40";
+import CarouselCategories from "components/CarouselCategories";
 
 export default function Home() {
-  const { dataHome } = useContext(DataHomeContext);
+  const { dataHome, isLoadData } = useContext(DataHomeContext);
 
   function returnCompByType(item: ModuleHomeSaveOnBackProps) {
     switch (item.Type!) {
@@ -21,6 +22,8 @@ export default function Home() {
         return <CarouselBanners key={item.Id} item={item} />;
       case 1:
         return <IndividualBanner key={item.Id} item={item} />;
+      case 4:
+        return <CarouselCategories key={item.Id} item={item} />;
       case 6:
         return <Banners3_3 key={item.Id} item={item} />;
       case 7:
@@ -39,7 +42,14 @@ export default function Home() {
 
   return (
     <S.container contentContainerStyle={{ gap: 20 }}>
-      {dataHome.length > 0 && dataHome.map((item) => returnCompByType(item))}
+      {!isLoadData &&
+        dataHome.length > 0 &&
+        dataHome.map((item) => returnCompByType(item))}
+      {!isLoadData && dataHome.length === 0 && (
+        <S.noDataHome>
+          <S.noDataHomeText>Não há itens na home</S.noDataHomeText>
+        </S.noDataHome>
+      )}
     </S.container>
   );
 }

@@ -6,11 +6,15 @@ interface DataHomeProps {
   setDataHome: React.Dispatch<
     React.SetStateAction<ModuleHomeSaveOnBackProps[]>
   >;
+  isLoadData: boolean;
+  setIsLoadData: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DataHomeContext = createContext<DataHomeProps>({
   dataHome: [],
   setDataHome: () => {},
+  isLoadData: false,
+  setIsLoadData: () => {},
 });
 
 interface ContextProps {
@@ -19,9 +23,12 @@ interface ContextProps {
 
 export function DataHomeProvider({ children }: ContextProps) {
   const [dataHome, setDataHome] = useState<ModuleHomeSaveOnBackProps[]>([]);
+  const [isLoadData, setIsLoadData] = useState(false);
 
   return (
-    <DataHomeContext.Provider value={{ dataHome, setDataHome }}>
+    <DataHomeContext.Provider
+      value={{ dataHome, setDataHome, isLoadData, setIsLoadData }}
+    >
       {children}
     </DataHomeContext.Provider>
   );

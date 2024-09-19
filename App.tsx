@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import {
   useFonts,
@@ -15,7 +15,11 @@ import Router from "Router";
 import { DataHomeProvider } from "context/useHomeContext";
 
 export default function App() {
-  const [fontsLoaded] = useFonts({ Inter_400Regular, Inter_700Bold });
+  const [fontsLoaded] = useFonts({
+    Inter_400Regular,
+    Inter_700Bold,
+    MobfiqFont: require("./assets/fonts/mobfiq-font.ttf"),
+  });
 
   const onLayputRootView = useCallback(async () => {
     await SplashScreen.hideAsync();
