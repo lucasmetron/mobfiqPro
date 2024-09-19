@@ -24,7 +24,7 @@ export default function Home() {
       case 8:
         return <Banners50_50 key={item.Id} item={item} />;
       case 10:
-        return <Banners1_2 key={item.Id} />;
+        return <Banners1_2 key={item.Id} item={item} />;
 
       default:
         return <Text key={item.Id}>a fazer {item.Type}</Text>;

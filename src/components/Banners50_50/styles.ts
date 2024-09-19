@@ -11,7 +11,6 @@ interface ContainerProps {
 export const container = styled.View<ContainerProps>`
   width: 100%;
   height: ${(props) => props.height}px;
-  background-color: aliceblue;
   flex-direction: row;
   gap: 10px;
 `;
