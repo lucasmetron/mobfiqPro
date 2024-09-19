@@ -11,7 +11,7 @@ interface teste {
 export const container = styled.View<teste>`
   flex: 1;
   height: ${(props) => props.height}px;
-  gap: 5px;
+  gap: 8px;
 `;
 
 export const item = styled.View`
