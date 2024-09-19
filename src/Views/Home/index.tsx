@@ -5,6 +5,7 @@ import * as S from "./styles";
 import DataHomeContext from "context/useHomeContext";
 import { ModuleHomeSaveOnBackProps } from "types/ModuleHomeSaveOnBackProps";
 import CarouselBanners from "components/CarouselBanners";
+import IndividualBanner from "components/IndividualBanner";
 
 export default function Home() {
   const { dataHome } = useContext(DataHomeContext);
@@ -13,6 +14,8 @@ export default function Home() {
     switch (item.Type!) {
       case 0:
         return <CarouselBanners key={item.Id} item={item} />;
+      case 1:
+        return <IndividualBanner key={item.Id} />;
 
       default:
         return <Text key={item.Id}>a fazer {item.Type}</Text>;
