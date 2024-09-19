@@ -30,17 +30,18 @@ export const boxCategories = styled.ScrollView`
 `;
 
 export const itemCategorie = styled.View`
-  width: ${RFPercentage(10)}px;
-  height: ${RFPercentage(10)}px;
-  border-color: ${color.interface.backgroundColor};
+  width: ${RFPercentage(12)}px;
+  height: ${RFPercentage(12)}px;
+  border-color: ${color.interface.backgroundColor2};
   border-width: 1px;
-  border-radius: ${RFPercentage(5)}px;
+  border-radius: ${RFPercentage(6)}px;
   align-items: center;
   justify-content: center;
 `;
 
 export const icon = styled.Text`
   text-align: center;
-  font-size: ${RFPercentage(2)}px;
+  font-size: ${RFPercentage(4)}px;
   font-family: ${fontsName.iconMobfiqFont};
+  color: ${color.interface.backgroundColor2};
 `;
