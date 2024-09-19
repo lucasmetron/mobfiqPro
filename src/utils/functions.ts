@@ -1,3 +1,7 @@
+import { api } from "services/api";
+import { ModuleHomeSaveOnBackProps } from "types/ModuleHomeSaveOnBackProps";
+import Toast from "react-native-toast-message";
+
 export function deleteTypeNavigatorFromString(value: string) {
   let newValue = value;
   if (value.includes("tab-")) {
@@ -163,4 +167,21 @@ export function returnStoreName(url: string) {
     const finalUrl = preFinalUrl.replace("v3", "v2");
     return finalUrl;
   }
+}
+
+export async function getHome(
+  getData: React.Dispatch<React.SetStateAction<ModuleHomeSaveOnBackProps[]>>
+) {
+  await api
+    .get("adminstore/home/getnonfiltered/1")
+    .then((res) => {
+      getData(res?.data?.Elements || []);
+    })
+    .catch(() => {
+      Toast.show({
+        type: "error",
+        text1: "Erro",
+        text2: "Ao buscar dados da home",
+      });
+    });
 }

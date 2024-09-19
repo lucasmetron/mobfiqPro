@@ -12,6 +12,7 @@ import Toast from "react-native-toast-message";
 
 import { color } from "styles/pallete";
 import Router from "Router";
+import { DataHomeProvider } from "context/useHomeContext";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Inter_400Regular, Inter_700Bold });
@@ -31,12 +32,14 @@ export default function App() {
         edges={["top", "bottom", "left", "right"]}
         onLayout={onLayputRootView}
       >
-        <Router />
-        <StatusBar
-          style="light"
-          backgroundColor={color.interface.backgroundColor}
-        />
-        <Toast position="top" topOffset={70} />
+        <DataHomeProvider>
+          <Router />
+          <StatusBar
+            style="light"
+            backgroundColor={color.interface.backgroundColor}
+          />
+          <Toast position="top" topOffset={70} />
+        </DataHomeProvider>
       </SafeAreaView>
     </SafeAreaProvider>
   );
