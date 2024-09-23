@@ -12,7 +12,6 @@ interface BrandCarouselProps {
 export default function BrandCarousel({ item }: BrandCarouselProps) {
   const { Element } = item;
   const bannersObjs: CarouselBrand = Element;
-  console.log("bannersObjs: ", bannersObjs);
 
   return (
     <S.container>

@@ -15,6 +15,7 @@ import CarouselCategories from "components/CarouselCategories";
 import ShortCut from "components/ShortCut";
 import ProductCarousel from "components/ProductCarousel";
 import BrandCarousel from "components/BrandCarousel";
+import ModuleVideo from "components/ModuleVideo";
 
 export default function Home() {
   const { dataHome, isLoadData } = useContext(DataHomeContext);
@@ -43,6 +44,8 @@ export default function Home() {
         return <Banners1_2 key={item.Id} item={item} />;
       case 12:
         return <BrandCarousel key={item.Id} item={item} />;
+      case 15:
+        return <ModuleVideo key={item.Id} item={item} />;
 
       default:
         return <Text key={item.Id}>a fazer {item.Type}</Text>;
