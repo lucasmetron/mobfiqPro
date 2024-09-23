@@ -44,3 +44,26 @@ export const carouselConteiner = styled.ScrollView`
   width: 100%;
   flex-direction: row;
 `;
+
+export const seeMoreBox = styled.View`
+  font-size: ${RFPercentage(1.6)}px;
+  color: ${color.auxiliary.coral};
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const seeMoreBtn = styled.TouchableOpacity`
+  border-radius: 20px;
+  padding: 10px;
+  background-color: ${color.interface.backgroundColor};
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+`;
+export const textBtn = styled.Text`
+  text-align: center;
+  font-size: ${RFPercentage(1.8)}px;
+  color: ${color.interface.white};
+  text-transform: uppercase;
+`;

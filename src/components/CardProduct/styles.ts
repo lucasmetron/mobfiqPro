@@ -11,7 +11,7 @@ export const container = styled.View`
 `;
 
 export const img = styled.ImageBackground`
-  flex: 5;
+  flex: 5.5;
   width: 100%;
   height: 100%;
   align-items: flex-end;
@@ -68,7 +68,7 @@ export const boxBtn = styled.View`
 
 export const buyBtn = styled.TouchableOpacity`
   width: 90%;
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 8px;
   background-color: ${color.interface.backgroundColor};
   align-items: center;
@@ -79,4 +79,26 @@ export const textBtn = styled.Text`
   text-align: center;
   font-size: ${RFPercentage(1.8)}px;
   color: ${color.interface.white};
+  text-transform: uppercase;
+`;
+
+export const price = styled.Text`
+  font-size: ${RFPercentage(1.6)}px;
+  color: ${color.auxiliary.coral};
+`;
+
+export const seeMoreBox = styled.View`
+  font-size: ${RFPercentage(1.6)}px;
+  color: ${color.auxiliary.coral};
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const seeMoreBtn = styled.TouchableOpacity`
+  border-radius: 10px;
+  padding: 8px;
+  background-color: ${color.interface.backgroundColor};
+  align-items: center;
+  justify-content: center;
 `;

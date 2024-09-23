@@ -16,7 +16,6 @@ interface ProductCarouselProps {
 export default function ProductCarousel({ item }: ProductCarouselProps) {
   const { Element } = item;
   const [products, setProducts] = useState<ProductProps[]>([]);
-  console.log("products: ", products);
   const [isLoad, setIsLoad] = useState(false);
 
   useEffect(() => {
@@ -46,6 +45,11 @@ export default function ProductCarousel({ item }: ProductCarouselProps) {
             {products.length > 0 &&
               products.map((item) => <CardProduct key={item.Id} item={item} />)}
           </S.carouselConteiner>
+          <S.seeMoreBox>
+            <S.seeMoreBtn>
+              <S.textBtn>Ver mais</S.textBtn>
+            </S.seeMoreBtn>
+          </S.seeMoreBox>
         </S.containerProducts>
       )}
     </S.container>

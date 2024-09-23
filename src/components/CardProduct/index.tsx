@@ -13,7 +13,6 @@ interface CardProductProps {
 }
 
 export default function CardProduct({ item }: CardProductProps) {
-  console.log("item: ", item);
   const hideQuota = false;
   const [listSkusOrder, setListSkusOrder] = useState<SkusProps[]>();
   const [firstSkuByrOrderAndSellers, setFirstSkuByrOrderAndSellers] =
@@ -71,7 +70,7 @@ export default function CardProduct({ item }: CardProductProps) {
 
   //Faz algumas verificações para retornar preço atual, preço antigo e parcelamento
   function returnPrice(product: ProductProps, skusOrdened: SkusProps[]) {
-    const productOrdenedCopy = product;
+    const productOrdenedCopy = { ...product };
     productOrdenedCopy.Skus = skusOrdened;
     if (
       product.Skus !== null &&
@@ -95,45 +94,49 @@ export default function CardProduct({ item }: CardProductProps) {
         index += 1;
       }
 
+      console.log("productSelected: ", productSelected);
       if (productSelected !== null && productSelected !== undefined) {
         const oldPrice =
           productSelected?.Sellers[0]?.ListPrice >
           productSelected?.Sellers[0]?.Price ? (
             <Text>
-              {" "}
-              {`preço ${
+              {`Preço antigo: R$ ${
                 productSelected?.Sellers[0]?.ListPrice.toFixed(2).replace(
                   ".",
                   ","
                 ) || 0
               }`}
             </Text>
-          ) : (
-            ""
-          );
+          ) : null;
 
         const price = (
           <Text>
-            {productSelected?.Sellers[0]?.Price.toFixed(2).replace(".", ",") ||
-              0}
+            {`R$${
+              productSelected?.Sellers[0]?.Price.toFixed(2).replace(".", ",") ||
+              0
+            }`}
           </Text>
         );
 
         const quota =
           productSelected?.Sellers[0]?.BestInstallment?.Count > 1 &&
           hideQuota === false ? (
-            <Text>{`orin ${
+            <Text>{`Ou em ${
               productSelected?.Sellers[0]?.BestInstallment.Count
-            }x de R$ ${
+            }x de R$${
               productSelected?.Sellers[0]?.BestInstallment?.Value.toFixed(
                 2
               ).replace(".", ",") || 0
             }`}</Text>
-          ) : (
-            ""
-          );
+          ) : null;
 
-        return <View>{`${oldPrice} ${price} ${quota}`}</View>;
+        return (
+          <>
+            {oldPrice !== null && <Text>{oldPrice}</Text>}
+            <S.price>{price}</S.price>
+            {quota !== null && <Text>{quota}</Text>}
+          </>
+        );
       } else {
         return (
           <View>
@@ -193,7 +196,7 @@ export default function CardProduct({ item }: CardProductProps) {
 
         <S.boxBtn>
           <S.buyBtn>
-            <S.textBtn>Comprar</S.textBtn>
+            <S.textBtn>COMPRAR</S.textBtn>
           </S.buyBtn>
         </S.boxBtn>
       </S.infos>
