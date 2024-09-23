@@ -16,6 +16,7 @@ import ShortCut from "components/ShortCut";
 import ProductCarousel from "components/ProductCarousel";
 import BrandCarousel from "components/BrandCarousel";
 import ModuleVideo from "components/ModuleVideo";
+import Banner2_1 from "components/Banner2_1";
 
 export default function Home() {
   const { dataHome, isLoadData } = useContext(DataHomeContext);
@@ -28,6 +29,8 @@ export default function Home() {
         return <IndividualBanner key={item.Id} item={item} />;
       case 2:
         return <ProductCarousel key={item.Id} item={item} />;
+      // case 3:
+      //   return <ProductGrid item={item} />;
       case 4:
         return <CarouselCategories key={item.Id} item={item} />;
       case 5:
@@ -42,8 +45,12 @@ export default function Home() {
         return <Banners60_40 key={item.Id} item={item} />;
       case 10:
         return <Banners1_2 key={item.Id} item={item} />;
+      case 11:
+        return <Banner2_1 key={item.Id} item={item} />;
       case 12:
         return <BrandCarousel key={item.Id} item={item} />;
+      // case 13:
+      // return <PrintCarouselHome item={item} />; // módulo usado somente em ciamaritima
       case 15:
         return <ModuleVideo key={item.Id} item={item} />;
 

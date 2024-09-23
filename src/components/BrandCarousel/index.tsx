@@ -26,7 +26,7 @@ export default function BrandCarousel({ item }: BrandCarouselProps) {
       >
         {bannersObjs.Banners.length > 0 &&
           bannersObjs.Banners.map((item) => (
-            <S.itemCarousel>
+            <S.itemCarousel key={item.Id}>
               <S.img resizeMode="stretch" source={{ uri: item.Image }} />
             </S.itemCarousel>
           ))}
