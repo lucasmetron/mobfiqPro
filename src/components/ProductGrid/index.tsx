@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, FlatList } from "react-native";
+import { Text, FlatList, View } from "react-native";
 
 import * as S from "./styles";
 import { ModuleHomeSaveOnBackProps } from "types/ModuleHomeSaveOnBackProps";
@@ -31,22 +31,27 @@ export default function ProductGrid({ item }: ProductGridProps) {
   return (
     <S.container>
       <S.line />
-      <S.title>teste</S.title>
+      <S.title>{Element.Title}</S.title>
 
       {isLoad ? (
         <S.loadContainer>
           <Load />
         </S.loadContainer>
       ) : (
-        <FlatList
-          data={products}
-          keyExtractor={(i) => i.Id}
-          renderItem={({ item }) => (
-            <S.boxCard>
-              <CardProduct item={item} />
-            </S.boxCard>
-          )}
-        />
+        <View>
+          <FlatList
+            data={products}
+            keyExtractor={(i) => i.Id}
+            numColumns={2}
+            key={2}
+            scrollEnabled={false}
+            renderItem={({ item }) => (
+              <S.boxCard>
+                <CardProduct item={item} />
+              </S.boxCard>
+            )}
+          />
+        </View>
       )}
     </S.container>
   );
