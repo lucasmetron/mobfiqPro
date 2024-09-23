@@ -14,6 +14,7 @@ import Banners60_40 from "components/Banners60_40";
 import CarouselCategories from "components/CarouselCategories";
 import ShortCut from "components/ShortCut";
 import ProductCarousel from "components/ProductCarousel";
+import BrandCarousel from "components/BrandCarousel";
 
 export default function Home() {
   const { dataHome, isLoadData } = useContext(DataHomeContext);
@@ -40,6 +41,8 @@ export default function Home() {
         return <Banners60_40 key={item.Id} item={item} />;
       case 10:
         return <Banners1_2 key={item.Id} item={item} />;
+      case 12:
+        return <BrandCarousel key={item.Id} item={item} />;
 
       default:
         return <Text key={item.Id}>a fazer {item.Type}</Text>;

@@ -94,7 +94,6 @@ export default function CardProduct({ item }: CardProductProps) {
         index += 1;
       }
 
-      console.log("productSelected: ", productSelected);
       if (productSelected !== null && productSelected !== undefined) {
         const oldPrice =
           productSelected?.Sellers[0]?.ListPrice >
