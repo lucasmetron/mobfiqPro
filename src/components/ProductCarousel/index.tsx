@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Text } from "react-native";
 
 import * as S from "./styles";
 import { ModuleHomeSaveOnBackProps } from "types/ModuleHomeSaveOnBackProps";
-import { ProductProps, SkusProps } from "types/ProductProps";
+import { ProductProps } from "types/ProductProps";
 import { reqProducts } from "./reqs";
-
 import Load from "components/Load";
 import CardProduct from "components/CardProduct";
 
@@ -43,7 +41,11 @@ export default function ProductCarousel({ item }: ProductCarouselProps) {
             contentContainerStyle={{ gap: 10 }}
           >
             {products.length > 0 &&
-              products.map((item) => <CardProduct key={item.Id} item={item} />)}
+              products.map((item) => (
+                <S.boxCard key={item.Id}>
+                  <CardProduct item={item} />
+                </S.boxCard>
+              ))}
           </S.carouselConteiner>
           <S.seeMoreBox>
             <S.seeMoreBtn>

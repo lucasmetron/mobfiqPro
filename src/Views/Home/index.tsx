@@ -17,6 +17,7 @@ import ProductCarousel from "components/ProductCarousel";
 import BrandCarousel from "components/BrandCarousel";
 import ModuleVideo from "components/ModuleVideo";
 import Banner2_1 from "components/Banner2_1";
+import ProductGrid from "components/ProductGrid";
 
 export default function Home() {
   const { dataHome, isLoadData } = useContext(DataHomeContext);
@@ -29,8 +30,8 @@ export default function Home() {
         return <IndividualBanner key={item.Id} item={item} />;
       case 2:
         return <ProductCarousel key={item.Id} item={item} />;
-      // case 3:
-      //   return <ProductGrid item={item} />;
+      case 3:
+        return <ProductGrid key={item.Id} item={item} />;
       case 4:
         return <CarouselCategories key={item.Id} item={item} />;
       case 5:

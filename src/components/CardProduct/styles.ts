@@ -6,7 +6,7 @@ import { color } from "styles/pallete";
 import { fontsName } from "styles/fonts";
 
 export const container = styled.View`
-  width: ${Dimensions.get("window").width * 0.4}px;
+  width: 100%;
   height: 100%;
 `;
 

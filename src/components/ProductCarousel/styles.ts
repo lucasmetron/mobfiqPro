@@ -11,6 +11,10 @@ export const container = styled.View`
   height: ${Dimensions.get("window").height * 0.65}px;
 `;
 
+export const boxCard = styled.View`
+  width: ${Dimensions.get("window").width * 0.4}px;
+`;
+
 export const line = styled.View`
   width: 100%;
   height: 2px;
