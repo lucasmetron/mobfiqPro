@@ -12,6 +12,7 @@ import Banners1_2 from "components/Banners1_2";
 import Banner40_60 from "components/Banner40_60";
 import Banners60_40 from "components/Banners60_40";
 import CarouselCategories from "components/CarouselCategories";
+import ShortCut from "components/ShortCut";
 
 export default function Home() {
   const { dataHome, isLoadData } = useContext(DataHomeContext);
@@ -24,6 +25,8 @@ export default function Home() {
         return <IndividualBanner key={item.Id} item={item} />;
       case 4:
         return <CarouselCategories key={item.Id} item={item} />;
+      case 5:
+        return <ShortCut key={item.Id} item={item} />;
       case 6:
         return <Banners3_3 key={item.Id} item={item} />;
       case 7:
