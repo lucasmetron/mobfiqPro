@@ -6,6 +6,7 @@ export async function reqProducts(query: string) {
   await api
     .post("adminstore/home/search", query)
     .then((res) => {
+      console.log("res: ", res);
       products = res.data.Products;
     })
     .catch(() => {

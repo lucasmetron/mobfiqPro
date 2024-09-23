@@ -43,5 +43,4 @@ export const title = styled.Text`
 export const carouselConteiner = styled.ScrollView`
   width: 100%;
   flex-direction: row;
-  background-color: aliceblue;
 `;

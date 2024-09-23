@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import Entypo from "react-native-vector-icons/Entypo";
 import { RFPercentage } from "react-native-responsive-fontsize";
 
 import * as S from "./styles";
@@ -8,10 +9,12 @@ import { ProductProps, SkusProps } from "types/ProductProps";
 import { color } from "styles/pallete";
 
 interface CardProductProps {
-  product: ProductProps;
+  item: ProductProps;
 }
 
-export default function CardProduct({ product }: CardProductProps) {
+export default function CardProduct({ item }: CardProductProps) {
+  console.log("item: ", item);
+  const hideQuota = false;
   const [listSkusOrder, setListSkusOrder] = useState<SkusProps[]>();
   const [firstSkuByrOrderAndSellers, setFirstSkuByrOrderAndSellers] =
     useState<SkusProps | null>();
@@ -66,12 +69,89 @@ export default function CardProduct({ product }: CardProductProps) {
     }
   }
 
+  //Faz algumas verificações para retornar preço atual, preço antigo e parcelamento
+  function returnPrice(product: ProductProps, skusOrdened: SkusProps[]) {
+    const productOrdenedCopy = product;
+    productOrdenedCopy.Skus = skusOrdened;
+    if (
+      product.Skus !== null &&
+      product.Skus !== null &&
+      product.Skus !== undefined &&
+      product.Skus.length > 0
+    ) {
+      let index = 0;
+      let productSelected: SkusProps | null = null;
+
+      while (
+        productSelected === null &&
+        index <= productOrdenedCopy.Skus.length
+      ) {
+        if (
+          productOrdenedCopy?.Skus[index]?.Sellers[0]?.Price !== 0 &&
+          productOrdenedCopy?.Skus[index]?.Sellers[0]?.Quantity !== 0
+        ) {
+          productSelected = productOrdenedCopy.Skus[index];
+        }
+        index += 1;
+      }
+
+      if (productSelected !== null && productSelected !== undefined) {
+        const oldPrice =
+          productSelected?.Sellers[0]?.ListPrice >
+          productSelected?.Sellers[0]?.Price ? (
+            <Text>
+              {" "}
+              {`preço ${
+                productSelected?.Sellers[0]?.ListPrice.toFixed(2).replace(
+                  ".",
+                  ","
+                ) || 0
+              }`}
+            </Text>
+          ) : (
+            ""
+          );
+
+        const price = (
+          <Text>
+            {productSelected?.Sellers[0]?.Price.toFixed(2).replace(".", ",") ||
+              0}
+          </Text>
+        );
+
+        const quota =
+          productSelected?.Sellers[0]?.BestInstallment?.Count > 1 &&
+          hideQuota === false ? (
+            <Text>{`orin ${
+              productSelected?.Sellers[0]?.BestInstallment.Count
+            }x de R$ ${
+              productSelected?.Sellers[0]?.BestInstallment?.Value.toFixed(
+                2
+              ).replace(".", ",") || 0
+            }`}</Text>
+          ) : (
+            ""
+          );
+
+        return <View>{`${oldPrice} ${price} ${quota}`}</View>;
+      } else {
+        return (
+          <View>
+            <S.productUnvaliable> Produto indisponível</S.productUnvaliable>
+          </View>
+        );
+      }
+    } else {
+      return <S.productUnvaliable> Produto indisponível</S.productUnvaliable>;
+    }
+  }
+
   //toda vez que o item mudar eu ordeno a lista pelo order (por que vem desordenado) e salvo o primeiro item da lista já ordenada com Sellers.Quantity > 0
   useEffect(() => {
-    if (product) {
-      orderSkusByOrderAndSellers(product.Skus);
+    if (item.Skus.length > 0) {
+      orderSkusByOrderAndSellers(item.Skus);
     }
-  }, [product]);
+  }, [item]);
 
   return (
     <S.container>
@@ -82,7 +162,7 @@ export default function CardProduct({ product }: CardProductProps) {
             uri:
               firstSkuByrOrderAndSellers !== null
                 ? firstSkuByrOrderAndSellers?.Images[0].ImageUrl
-                : product.Skus[0].Images[0].ImageUrl,
+                : item.Skus[0].Images[0].ImageUrl,
           }}
         >
           <S.likeBox>
@@ -94,13 +174,28 @@ export default function CardProduct({ product }: CardProductProps) {
           </S.likeBox>
         </S.img>
       ) : (
-        <>
-          <AntDesign name="user" size={30} color={"red"} />
-          <Text>teste</Text>
-        </>
+        <S.noImage>
+          <Entypo name="image" size={30} color={color.interface.darkgray} />
+        </S.noImage>
       )}
       <S.infos>
-        <Text> teste</Text>
+        <S.infos>
+          {item?.Brand && item?.Brand !== "" && (
+            <S.titleProductBrand numberOfLines={2}>
+              {item?.Brand || "sem brand"}
+            </S.titleProductBrand>
+          )}
+
+          <S.subTitleProduct numberOfLines={2}>{item?.Name}</S.subTitleProduct>
+
+          {returnPrice(item, listSkusOrder !== undefined ? listSkusOrder : [])}
+        </S.infos>
+
+        <S.boxBtn>
+          <S.buyBtn>
+            <S.textBtn>Comprar</S.textBtn>
+          </S.buyBtn>
+        </S.boxBtn>
       </S.infos>
     </S.container>
   );

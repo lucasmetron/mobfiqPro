@@ -16,10 +16,8 @@ interface ProductCarouselProps {
 export default function ProductCarousel({ item }: ProductCarouselProps) {
   const { Element } = item;
   const [products, setProducts] = useState<ProductProps[]>([]);
-  const [isLoad, setIsLoad] = useState(false);
-
   console.log("products: ", products);
-  console.log("item: ", item);
+  const [isLoad, setIsLoad] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -46,9 +44,7 @@ export default function ProductCarousel({ item }: ProductCarouselProps) {
             contentContainerStyle={{ gap: 10 }}
           >
             {products.length > 0 &&
-              products.map((item) => (
-                <CardProduct key={item.Id} product={item} />
-              ))}
+              products.map((item) => <CardProduct key={item.Id} item={item} />)}
           </S.carouselConteiner>
         </S.containerProducts>
       )}

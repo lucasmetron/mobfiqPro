@@ -8,13 +8,22 @@ import { fontsName } from "styles/fonts";
 export const container = styled.View`
   width: ${Dimensions.get("window").width * 0.4}px;
   height: 100%;
-  background-color: red;
 `;
 
 export const img = styled.ImageBackground`
   flex: 5;
   width: 100%;
+  height: 100%;
   align-items: flex-end;
+`;
+
+export const noImage = styled.View`
+  flex: 5;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: ${color.interface.lightGray2};
 `;
 
 export const likeBox = styled.View`
@@ -30,4 +39,44 @@ export const likeBox = styled.View`
 export const infos = styled.View`
   flex: 5;
   width: 100%;
+  gap: 5px;
+  padding: 0px 2px;
+`;
+
+export const titleProductBrand = styled.Text`
+  padding-top: 10px;
+  font-family: ${fontsName.title};
+  font-size: ${RFPercentage(1.6)}px;
+`;
+
+export const subTitleProduct = styled.Text`
+  font-family: ${fontsName.text};
+  font-size: ${RFPercentage(1.5)}px;
+`;
+
+export const productUnvaliable = styled.Text`
+  font-family: ${fontsName.title};
+  font-size: ${RFPercentage(1.5)}px;
+`;
+
+export const boxBtn = styled.View`
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 15px;
+`;
+
+export const buyBtn = styled.TouchableOpacity`
+  width: 90%;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: ${color.interface.backgroundColor};
+  align-items: center;
+  justify-content: center;
+`;
+
+export const textBtn = styled.Text`
+  text-align: center;
+  font-size: ${RFPercentage(1.8)}px;
+  color: ${color.interface.white};
 `;
