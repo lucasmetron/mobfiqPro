@@ -18,6 +18,7 @@ export default function EntryWithAccessCode() {
           autoFocus
           placeholderTextColor={color.interface.darkgray}
           keyboardType="email-address"
+          returnKeyType="done"
         />
       </S.inputBox>
 
@@ -30,6 +31,7 @@ export default function EntryWithAccessCode() {
           placeholder="Digite o seu código"
           placeholderTextColor={color.interface.darkgray}
           keyboardType="numeric"
+          returnKeyType="done"
         />
       </S.inputBox>
 
