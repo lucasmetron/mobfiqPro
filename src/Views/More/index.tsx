@@ -12,7 +12,6 @@ import Load from "components/Load";
 export default function More() {
   const [isLoad, setIsLoad] = useState(false);
   const [menuObj, setMenuObj] = useState<MenuObjFromBack | null>(null);
-  console.log("menuObj: ", menuObj);
 
   useEffect(() => {
     (async () => {
