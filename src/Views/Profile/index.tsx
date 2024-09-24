@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { useNavigation } from "@react-navigation/native";
 
 import * as S from "./styles";
 import { color } from "styles/pallete";
+import { stacksProfile } from "Router/routes";
 
 export default function Profile() {
+  const navigation: any = useNavigation();
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <S.container>
-      <S.btn>
+      <S.btn onPress={() => navigation.navigate(stacksProfile.entryAccessCode)}>
         <Fontisto name="unlocked" size={15} color={color.interface.white} />
         <S.textBtn>Entrar com código de acesso</S.textBtn>
       </S.btn>

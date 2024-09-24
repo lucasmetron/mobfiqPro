@@ -18,6 +18,7 @@ export const stacksHome = {
 
 export const stacksProfile = {
   initial: "stacksProfile-profile",
+  entryAccessCode: "stacksProfile-entryAccessCode",
 };
 
 export const stacksCategories = {

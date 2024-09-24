@@ -26,7 +26,7 @@ export default function HeaderDefault({
         <S.btnGoBack onPress={() => navigator.goBack()}>
           <MaterialIconsfrom
             name="arrow-back-ios"
-            color={color.interface.white}
+            color={color.interface.blue1}
             size={RFPercentage(2.5)}
           />
         </S.btnGoBack>
