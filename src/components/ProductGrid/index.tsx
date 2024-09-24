@@ -17,8 +17,6 @@ export default function ProductGrid({ item }: ProductGridProps) {
   const [products, setProducts] = useState<ProductProps[]>([]);
   const [isLoad, setIsLoad] = useState(false);
 
-  console.log("Element: ", Element);
-
   useEffect(() => {
     (async () => {
       setIsLoad(true);

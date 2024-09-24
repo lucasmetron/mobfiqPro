@@ -14,8 +14,8 @@ export default function IndividualBanner({ item }: IndividualBannerProps) {
   const banner: BannerCarouselProps = Element;
 
   return (
-    <S.container height={banner.Height / 3 || 500}>
-      <S.img source={{ uri: banner.Image }} />
+    <S.container height={banner.Height * 0.5 || 500}>
+      <S.img resizeMode="stretch" source={{ uri: banner.Image }} />
     </S.container>
   );
 }

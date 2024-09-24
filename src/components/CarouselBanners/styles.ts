@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 import { RFPercentage } from "react-native-responsive-fontsize";
 
 import { color } from "styles/pallete";
+import { Dimensions } from "react-native";
 // import { fontsName } from "styles/fonts";
 
 interface teste {
@@ -11,6 +12,7 @@ interface teste {
 export const container = styled.View<teste>`
   flex: 1;
   height: ${(props) => props.height}px;
+  max-height: ${Dimensions.get("window").height * 0.7} px;
   gap: 8px;
 `;
 

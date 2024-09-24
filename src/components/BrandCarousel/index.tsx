@@ -21,7 +21,7 @@ export default function BrandCarousel({ item }: BrandCarouselProps) {
       <S.carouselConteiner
         horizontal
         contentContainerStyle={{ gap: 8 }}
-        height={bannersObjs?.Banners[0]?.Height * 0.15 || 200}
+        height={bannersObjs?.Banners[0]?.Height * 0.5 || 200}
         showsHorizontalScrollIndicator={false}
       >
         {bannersObjs.Banners.length > 0 &&

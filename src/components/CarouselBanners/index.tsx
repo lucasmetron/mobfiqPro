@@ -22,7 +22,7 @@ export default function CarouselBanners({ item }: CarouselBannersProps) {
 
   return (
     <ScrollView>
-      <S.container height={item.Element.Banners[0].Height / 3 || 500}>
+      <S.container height={item.Element.Banners[0].Height * 0.35 || 500}>
         <Carousel
           loop
           width={width}

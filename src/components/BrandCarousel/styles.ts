@@ -8,6 +8,7 @@ import { fontsName } from "styles/fonts";
 export const container = styled.View`
   background-color: ${color.interface.white};
   width: 100%;
+  max-height: ${Dimensions.get("window").height * 0.5}px;
 `;
 
 export const title = styled.Text`
@@ -31,6 +32,7 @@ interface CarouselConteinerProps {
 export const carouselConteiner = styled.ScrollView<CarouselConteinerProps>`
   width: 100%;
   height: ${(props) => props.height}px;
+
   flex-direction: row;
   padding-top: 10px;
   padding-bottom: 10px;
