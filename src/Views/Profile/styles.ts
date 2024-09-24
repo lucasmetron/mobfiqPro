@@ -7,7 +7,7 @@ import { fontsName } from "styles/fonts";
 export const container = styled.View`
   flex: 1;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 15px;
   gap: 10px;
 `;
 
