@@ -69,7 +69,7 @@ export const boxforgotPassword = styled.View`
   padding: 10px 0;
 `;
 
-export const btnNoBackground = styled.TouchableHighlight`
+export const btnNoBackground = styled.TouchableOpacity`
   width: 100%;
   gap: 5px;
 `;

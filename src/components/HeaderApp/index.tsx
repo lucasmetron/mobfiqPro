@@ -12,6 +12,8 @@ export default function HeaderApp() {
   function returnHeaderCorrect() {
     switch (route.name) {
       case stacksProfile.entryAccessCode:
+      case stacksProfile.forgotPassword:
+      case stacksProfile.createAcounte:
         return <HeaderDefault route={route} showBackArrow={true} />;
 
       default:

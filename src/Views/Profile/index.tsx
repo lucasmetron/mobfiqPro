@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState, useContext } from "react";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
@@ -6,14 +6,21 @@ import { useNavigation } from "@react-navigation/native";
 import * as S from "./styles";
 import { color } from "styles/pallete";
 import { stacksProfile } from "Router/routes";
+import HeaderDefaultContext from "context/useHeaderDefaultContext";
 
 export default function Profile() {
   const navigation: any = useNavigation();
+  const { setNameRouter } = useContext(HeaderDefaultContext);
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <S.container>
-      <S.btn onPress={() => navigation.navigate(stacksProfile.entryAccessCode)}>
+      <S.btn
+        onPress={() => {
+          navigation.navigate(stacksProfile.entryAccessCode);
+          setNameRouter("Entrar com código de acesso");
+        }}
+      >
         <Fontisto name="unlocked" size={15} color={color.interface.white} />
         <S.textBtn>Entrar com código de acesso</S.textBtn>
       </S.btn>
@@ -51,7 +58,12 @@ export default function Profile() {
           Esqueceu a senha?
         </S.textForgotPassword>
 
-        <S.btnNoBackground>
+        <S.btnNoBackground
+          onPress={() => {
+            navigation.navigate(stacksProfile.forgotPassword);
+            setNameRouter("Esqueci a senha");
+          }}
+        >
           <S.textForgotPassword color={color.interface.blue1}>
             Clique aqui
           </S.textForgotPassword>
@@ -59,7 +71,12 @@ export default function Profile() {
       </S.boxforgotPassword>
 
       <S.notYetRegisterText>Ainda não é cadastrado?</S.notYetRegisterText>
-      <S.btnOutline>
+      <S.btnOutline
+        onPress={() => {
+          navigation.navigate(stacksProfile.createAcounte);
+          setNameRouter("Criar conta");
+        }}
+      >
         <S.textBtnOutline>Criar nova conta</S.textBtnOutline>
       </S.btnOutline>
     </S.container>
