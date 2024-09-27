@@ -30,72 +30,78 @@ export default function Cart() {
       <Load text="Carregando produtos..." />
     </S.loadBox>
   ) : (
-    <S.container contentContainerStyle={{ gap: 10 }}>
+    <S.container>
       {products.length > 0 ? (
         <>
-          {products.map((item) => (
-            <S.item key={item.Id}>
-              <S.boxPhotoAndTitleProdutc>
-                <S.imgProduct
-                  resizeMode="stretch"
-                  source={{ uri: item.Skus[0]?.Images[0]?.ImageUrl }}
+          <S.cartScroll contentContainerStyle={{ gap: 10 }}>
+            {products.map((item) => (
+              <S.item key={item.Id}>
+                <S.boxPhotoAndTitleProdutc>
+                  <S.imgProduct
+                    resizeMode="stretch"
+                    source={{ uri: item.Skus[0]?.Images[0]?.ImageUrl }}
+                  />
+                  <S.boxTitleAndSubTitle>
+                    <Text numberOfLines={2}>{item.Name}</Text>
+                    <Text numberOfLines={1}>Fornecido e entregue por: </Text>
+                  </S.boxTitleAndSubTitle>
+                </S.boxPhotoAndTitleProdutc>
+
+                <S.qtdAndPrice>
+                  <S.qtdBox>
+                    <S.btn>
+                      <AntDesign
+                        name="plus"
+                        size={10}
+                        color={color.interface.darkgray}
+                      />
+                    </S.btn>
+                    <Text>1</Text>
+                    <S.btn style={{ alignItems: "flex-end" }}>
+                      <AntDesign
+                        name="minus"
+                        size={10}
+                        color={color.interface.darkgray}
+                      />
+                    </S.btn>
+                  </S.qtdBox>
+                  <Text>{formatToBRL(item.Skus[0].MeasurementPrice || 0)}</Text>
+                </S.qtdAndPrice>
+              </S.item>
+            ))}
+
+            <S.whiteBox>
+              <Text>Você possui vale presente?</Text>
+            </S.whiteBox>
+
+            <S.whiteBox>
+              <S.titleInput>Possui cupom de desconto</S.titleInput>
+              <S.inputBox>
+                <S.input
+                  placeholder="Informe o cupom aqui"
+                  placeholderTextColor={color.interface.darkgray}
+                  keyboardType="default"
+                  returnKeyType="done"
                 />
-                <S.boxTitleAndSubTitle>
-                  <Text numberOfLines={2}>{item.Name}</Text>
-                  <Text numberOfLines={1}>Fornecido e entregue por: </Text>
-                </S.boxTitleAndSubTitle>
-              </S.boxPhotoAndTitleProdutc>
+              </S.inputBox>
+            </S.whiteBox>
 
-              <S.qtdAndPrice>
-                <S.qtdBox>
-                  <S.btn>
-                    <AntDesign
-                      name="plus"
-                      size={10}
-                      color={color.interface.darkgray}
-                    />
-                  </S.btn>
-                  <Text>1</Text>
-                  <S.btn style={{ alignItems: "flex-end" }}>
-                    <AntDesign
-                      name="minus"
-                      size={10}
-                      color={color.interface.darkgray}
-                    />
-                  </S.btn>
-                </S.qtdBox>
-                <Text>{formatToBRL(item.Skus[0].MeasurementPrice || 0)}</Text>
-              </S.qtdAndPrice>
-            </S.item>
-          ))}
+            <S.whiteBox style={{ marginBottom: 10 }}>
+              <S.titleInput>Código de vendedor</S.titleInput>
+              <S.inputBox>
+                <S.input
+                  placeholder="Código do vendedor"
+                  placeholderTextColor={color.interface.darkgray}
+                  keyboardType="default"
+                  returnKeyType="done"
+                />
+              </S.inputBox>
+            </S.whiteBox>
+          </S.cartScroll>
 
-          <S.whiteBox>
-            <Text>Você possui vale presente?</Text>
-          </S.whiteBox>
-
-          <S.whiteBox>
-            <S.titleInput>Possui cupom de desconto</S.titleInput>
-            <S.inputBox>
-              <S.input
-                placeholder="Informe o cupom aqui"
-                placeholderTextColor={color.interface.darkgray}
-                keyboardType="default"
-                returnKeyType="done"
-              />
-            </S.inputBox>
-          </S.whiteBox>
-
-          <S.whiteBox>
-            <S.titleInput>Código de vendedor</S.titleInput>
-            <S.inputBox>
-              <S.input
-                placeholder="Código do vendedor"
-                placeholderTextColor={color.interface.darkgray}
-                keyboardType="default"
-                returnKeyType="done"
-              />
-            </S.inputBox>
-          </S.whiteBox>
+          <S.boxFinishBuy>
+            <Text>teste</Text>
+          </S.boxFinishBuy>
         </>
       ) : (
         <S.noProducts>

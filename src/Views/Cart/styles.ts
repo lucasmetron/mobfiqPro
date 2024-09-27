@@ -5,9 +5,20 @@ import { color } from "styles/pallete";
 import { fontsName } from "styles/fonts";
 import { Dimensions } from "react-native";
 
-export const container = styled.ScrollView`
+export const container = styled.View`
   flex: 1;
+`;
+
+export const cartScroll = styled.ScrollView`
+  flex: 7.5;
   padding: ${RFPercentage(1)}px;
+`;
+
+export const boxFinishBuy = styled.View`
+  flex: 2.5;
+  align-items: center;
+  justify-content: center;
+  background-color: ${color.interface.white};
 `;
 
 export const loadBox = styled.View`
