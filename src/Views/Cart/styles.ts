@@ -17,10 +17,10 @@ export const loadBox = styled.View`
 `;
 
 export const item = styled.View`
+  width: 100%;
+  min-height: fit-content;
   background-color: ${color.interface.white};
   padding: ${RFPercentage(2)}px;
-  width: 100%;
-  height: fit-content;
   border-radius: 5px;
 `;
 
