@@ -51,7 +51,7 @@ export const textBtnOutline = styled.Text`
 export const inputBox = styled.View`
   width: 90%;
   padding: 13px;
-  background-color: ${color.interface.lightGray2};
+  background-color: ${color.interface.lightGray4};
   flex-direction: row;
   align-items: center;
   justify-content: center;
