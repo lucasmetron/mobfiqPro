@@ -6,6 +6,8 @@ interface ProductsListProps {
   setProductsList: React.Dispatch<React.SetStateAction<ProductProps[]>>;
   isLoadProducts: boolean;
   setIsLoadProducts: React.Dispatch<React.SetStateAction<boolean>>;
+  productToSearch: string;
+  setProductToSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const ProductsListContext = createContext<ProductsListProps>({
@@ -13,6 +15,8 @@ const ProductsListContext = createContext<ProductsListProps>({
   setProductsList: () => {},
   isLoadProducts: false,
   setIsLoadProducts: () => {},
+  productToSearch: "",
+  setProductToSearch: () => {},
 });
 
 interface ContextProps {
@@ -22,6 +26,7 @@ interface ContextProps {
 export function ProductsListProvider({ children }: ContextProps) {
   const [productsList, setProductsList] = useState<ProductProps[]>([]);
   const [isLoadProducts, setIsLoadProducts] = useState(false);
+  const [productToSearch, setProductToSearch] = useState("");
 
   return (
     <ProductsListContext.Provider
@@ -30,6 +35,8 @@ export function ProductsListProvider({ children }: ContextProps) {
         setProductsList,
         isLoadProducts,
         setIsLoadProducts,
+        productToSearch,
+        setProductToSearch,
       }}
     >
       {children}
