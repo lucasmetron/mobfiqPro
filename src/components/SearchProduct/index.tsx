@@ -1,13 +1,20 @@
 import React, { useContext, useLayoutEffect, useState } from "react";
+import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 import * as S from "./styles";
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import { color } from "styles/pallete";
 import useDebounce from "hooks/useDebounce";
 import { searchProducts } from "./reqs";
 import ProductsListContext from "context/useProductsList";
 
-export default function SearchProduct() {
+interface SearchProductProps {
+  onSubmitFuction?: any;
+}
+
+export default function SearchProduct({
+  onSubmitFuction = () => {},
+}: SearchProductProps) {
   const { setIsLoadProducts, setProductsList, setProductToSearch } =
     useContext(ProductsListContext);
   const [searchText, setSearchText] = useState("");
@@ -20,7 +27,6 @@ export default function SearchProduct() {
         setIsLoadProducts(true);
         setProductToSearch(textDebounced);
         await searchProducts(textDebounced, setProductsList);
-        setProductToSearch("");
         setIsLoadProducts(false);
       })();
     }
@@ -40,7 +46,22 @@ export default function SearchProduct() {
         onChangeText={(text) => setSearchText(text)}
         keyboardType="default"
         returnKeyType="done"
+        onSubmitEditing={() => {
+          onSubmitFuction();
+        }}
       />
+      {searchText !== "" && (
+        <AntDesign
+          name="closecircle"
+          size={20}
+          color={color.interface.darkgray}
+          onPress={() => {
+            setSearchText("");
+            setProductToSearch("");
+            setProductsList([]);
+          }}
+        />
+      )}
     </S.container>
   );
 }

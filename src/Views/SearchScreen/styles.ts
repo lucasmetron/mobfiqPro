@@ -54,5 +54,5 @@ export const noProductsText = styled.Text`
   font-family: ${fontsName.text};
   font-size: ${RFPercentage(2)}px;
   color: ${color.interface.darkgray};
-  padding: 10px;
+  padding: 15px;
 `;
