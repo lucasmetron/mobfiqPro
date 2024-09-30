@@ -12,7 +12,16 @@ import { color } from "styles/pallete";
 export default function Cart() {
   const [products, setProducts] = useState<ProductProps[]>([]);
   const [isLoad, setIsLoad] = useState(false);
-  console.log("products: ", products);
+
+  function returnTotalPrice(products: ProductProps[]) {
+    let totalPrice = 0;
+
+    products.forEach((item) => {
+      totalPrice = totalPrice + item.Skus[0].MeasurementPrice || 0;
+    });
+
+    return formatToBRL(totalPrice);
+  }
 
   useEffect(() => {
     (async () => {
@@ -42,8 +51,7 @@ export default function Cart() {
                     source={{ uri: item.Skus[0]?.Images[0]?.ImageUrl }}
                   />
                   <S.boxTitleAndSubTitle>
-                    <Text numberOfLines={2}>{item.Name}</Text>
-                    <Text numberOfLines={1}>Fornecido e entregue por: </Text>
+                    <S.nameProduct numberOfLines={2}>{item.Name}</S.nameProduct>
                   </S.boxTitleAndSubTitle>
                 </S.boxPhotoAndTitleProdutc>
 
@@ -100,7 +108,24 @@ export default function Cart() {
           </S.cartScroll>
 
           <S.boxFinishBuy>
-            <Text>teste</Text>
+            <S.infosBuy>
+              <S.textInfosBuy>Desconto</S.textInfosBuy>
+              <S.textInfosBuy>R$ 0</S.textInfosBuy>
+            </S.infosBuy>
+
+            <S.infosBuy>
+              <S.textInfosBuy>Imposto</S.textInfosBuy>
+              <S.textInfosBuy>R$ 0</S.textInfosBuy>
+            </S.infosBuy>
+
+            <S.infosBuy>
+              <S.textInfosBuy>Preço</S.textInfosBuy>
+              <S.textInfosBuy>{returnTotalPrice(products)}</S.textInfosBuy>
+            </S.infosBuy>
+
+            <S.btnBuy>
+              <S.textBtnBuy>Fechar pedido</S.textBtnBuy>
+            </S.btnBuy>
           </S.boxFinishBuy>
         </>
       ) : (

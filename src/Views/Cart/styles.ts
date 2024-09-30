@@ -10,15 +10,22 @@ export const container = styled.View`
 `;
 
 export const cartScroll = styled.ScrollView`
-  flex: 7.5;
+  flex: 1;
   padding: ${RFPercentage(1)}px;
 `;
 
 export const boxFinishBuy = styled.View`
-  flex: 2.5;
   align-items: center;
-  justify-content: center;
+  padding-top: 10px;
+  gap: 10px;
+  justify-content: space-between;
   background-color: ${color.interface.white};
+`;
+
+export const nameProduct = styled.Text`
+  font-family: ${fontsName.title};
+  font-size: ${RFPercentage(1.8)}px;
+  color: ${color.interface.darkgray};
 `;
 
 export const loadBox = styled.View`
@@ -110,4 +117,33 @@ export const noProducts = styled.View`
   align-items: center;
   justify-content: center;
   background-color: ${color.interface.white};
+`;
+
+export const infosBuy = styled.TouchableOpacity`
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
+`;
+
+export const textInfosBuy = styled.Text`
+  color: ${color.interface.darkgray};
+  font-family: ${fontsName.text};
+  font-size: ${RFPercentage(1.8)}px;
+`;
+
+export const btnBuy = styled.TouchableOpacity`
+  width: 100%;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: ${color.interface.darkgray};
+`;
+
+export const textBtnBuy = styled.Text`
+  color: ${color.interface.white};
+  font-family: ${fontsName.title};
+  font-size: ${RFPercentage(1.7)}px;
+  text-transform: uppercase;
 `;
