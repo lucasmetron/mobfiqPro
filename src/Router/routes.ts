@@ -14,6 +14,8 @@ export const tabsRoutes = {
 
 export const stacksHome = {
   initial: "stacksHome-home",
+  search: "stacksHome-search",
+  plp: "stacksHome-plp",
 };
 
 export const stacksProfile = {

@@ -6,6 +6,7 @@ import * as S from "./styles";
 import HeaderDefault from "components/HeaderDefault";
 import { stacksProfile, stacksHome } from "Router/routes";
 import HeaderHome from "components/HeaderHome";
+import HeaderSearch from "components/HeaderSearch";
 
 export default function HeaderApp() {
   const route = useRoute();
@@ -14,6 +15,9 @@ export default function HeaderApp() {
     switch (route.name) {
       case stacksHome.initial:
         return <HeaderHome />;
+
+      case stacksHome.search:
+        return <HeaderSearch />;
 
       case stacksProfile.entryAccessCode:
       case stacksProfile.forgotPassword:
