@@ -2,10 +2,17 @@ import styled from "styled-components/native";
 import { Dimensions, Platform } from "react-native";
 import { color } from "../../styles/pallete";
 
-export const container = styled.View`
+interface ContainerProps {
+  isHome: boolean;
+}
+
+export const container = styled.View<ContainerProps>`
   background-color: ${color.interface.white};
-  height: ${Dimensions.get("window").height *
-  (Platform.OS === "ios" ? 0.055 : 0.08)}px;
+  height: ${(props) =>
+    props.isHome
+      ? Dimensions.get("window").height * 0.08
+      : Dimensions.get("window").height *
+        (Platform.OS === "ios" ? 0.055 : 0.08)}px;
   flex-direction: row;
   gap: 5px;
   align-items: center;

@@ -4,13 +4,17 @@ import { SafeAreaView } from "react-native";
 
 import * as S from "./styles";
 import HeaderDefault from "components/HeaderDefault";
-import { stacksProfile } from "Router/routes";
+import { stacksProfile, stacksHome } from "Router/routes";
+import HeaderHome from "components/HeaderHome";
 
 export default function HeaderApp() {
   const route = useRoute();
 
   function returnHeaderCorrect() {
     switch (route.name) {
+      case stacksHome.initial:
+        return <HeaderHome />;
+
       case stacksProfile.entryAccessCode:
       case stacksProfile.forgotPassword:
       case stacksProfile.createAcounte:
@@ -23,7 +27,9 @@ export default function HeaderApp() {
 
   return (
     <SafeAreaView>
-      <S.container>{returnHeaderCorrect()}</S.container>
+      <S.container isHome={route.name === stacksHome.initial}>
+        {returnHeaderCorrect()}
+      </S.container>
       <S.line />
     </SafeAreaView>
   );
