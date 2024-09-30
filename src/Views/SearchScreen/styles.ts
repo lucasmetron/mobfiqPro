@@ -44,4 +44,15 @@ export const price = styled.Text`
   color: ${color.interface.blue1};
 `;
 
-export const noProducts = styled.View``;
+export const noProducts = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const noProductsText = styled.Text`
+  font-family: ${fontsName.text};
+  font-size: ${RFPercentage(2)}px;
+  color: ${color.interface.darkgray};
+  padding: 10px;
+`;

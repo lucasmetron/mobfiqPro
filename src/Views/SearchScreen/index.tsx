@@ -32,7 +32,7 @@ export default function SearchScreen() {
 
       {!isLoadProducts && productsList.length === 0 && (
         <S.noProducts>
-          <Text>Não há produtos</Text>
+          <S.noProductsText>Não há produtos</S.noProductsText>
         </S.noProducts>
       )}
     </S.container>

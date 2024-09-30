@@ -6,7 +6,6 @@ import { color } from "styles/pallete";
 import useDebounce from "hooks/useDebounce";
 import { searchProducts } from "./reqs";
 import ProductsListContext from "context/useProductsList";
-import Load from "components/Load";
 
 export default function SearchProduct() {
   const { setIsLoadProducts, setProductsList, setProductToSearch } =
@@ -39,6 +38,8 @@ export default function SearchProduct() {
         placeholder="Pesquisar produtos"
         autoFocus
         onChangeText={(text) => setSearchText(text)}
+        keyboardType="default"
+        returnKeyType="done"
       />
     </S.container>
   );

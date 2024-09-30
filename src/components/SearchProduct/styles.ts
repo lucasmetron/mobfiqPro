@@ -16,6 +16,7 @@ export const container = styled.View`
 `;
 
 export const textSearch = styled.TextInput`
+  flex: 1;
   color: ${color.interface.darkgray};
   font-family: ${fontsName.text};
 `;
