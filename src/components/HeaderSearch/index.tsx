@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import * as S from "./styles";
 import { color } from "styles/pallete";
-import SearchProduct from "components/SearchProduct";
+import SearchProductHome from "components/SearchProductHome";
 
 export default function HeaderSearch() {
   const navigator = useNavigation();
@@ -25,7 +25,7 @@ export default function HeaderSearch() {
         />
       </S.btnGoBack>
 
-      <SearchProduct />
+      <SearchProductHome />
 
       <AntDesign
         name="barcode"

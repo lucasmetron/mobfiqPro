@@ -1,25 +1,32 @@
 import React, { useContext, useLayoutEffect, useState } from "react";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import { useNavigation } from "@react-navigation/native";
 
 import * as S from "./styles";
 import { color } from "styles/pallete";
 import useDebounce from "hooks/useDebounce";
 import { searchProducts } from "./reqs";
 import ProductsListContext from "context/useProductsList";
+import { stacksHome } from "Router/routes";
+import { Alert } from "react-native";
 
-interface SearchProductProps {
-  onSubmitFuction?: any;
-}
-
-export default function SearchProduct({
-  onSubmitFuction = () => {},
-}: SearchProductProps) {
+export default function SearchProductHome() {
+  const navigation: any = useNavigation();
   const { setIsLoadProducts, setProductsList, setProductToSearch } =
     useContext(ProductsListContext);
   const [searchText, setSearchText] = useState("");
 
   const textDebounced = useDebounce(searchText, 1500);
+
+  function onSubmitKeyboard() {
+    if (searchText === "") {
+      Alert.alert("Preencha o campo de busca.");
+    } else {
+      setProductToSearch(searchText);
+      navigation.navigate(stacksHome.plp);
+    }
+  }
 
   useLayoutEffect(() => {
     if (textDebounced !== "") {
@@ -35,6 +42,7 @@ export default function SearchProduct({
   return (
     <S.container>
       <SimpleLineIcons
+        onPress={onSubmitKeyboard}
         name="magnifier"
         size={20}
         color={color.interface.darkgray}
@@ -46,9 +54,7 @@ export default function SearchProduct({
         onChangeText={(text) => setSearchText(text)}
         keyboardType="default"
         returnKeyType="done"
-        onSubmitEditing={() => {
-          onSubmitFuction();
-        }}
+        onSubmitEditing={onSubmitKeyboard}
       />
       {searchText !== "" && (
         <AntDesign

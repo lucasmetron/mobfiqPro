@@ -3,6 +3,7 @@ import { RFPercentage } from "react-native-responsive-fontsize";
 
 import { color } from "styles/pallete";
 import { fontsName } from "styles/fonts";
+import { Dimensions } from "react-native";
 
 export const container = styled.ScrollView`
   flex: 1;
@@ -46,6 +47,8 @@ export const price = styled.Text`
 
 export const noProducts = styled.View`
   flex: 1;
+  height: ${Dimensions.get("window").height -
+  Dimensions.get("window").height * 0.2}px;
   align-items: center;
   justify-content: center;
 `;
@@ -54,5 +57,4 @@ export const noProductsText = styled.Text`
   font-family: ${fontsName.text};
   font-size: ${RFPercentage(2)}px;
   color: ${color.interface.darkgray};
-  padding: 15px;
 `;

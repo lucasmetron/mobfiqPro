@@ -22,6 +22,7 @@ export default function HeaderApp() {
       case stacksProfile.entryAccessCode:
       case stacksProfile.forgotPassword:
       case stacksProfile.createAcounte:
+      case stacksHome.plp:
         return <HeaderDefault route={route} showBackArrow={true} />;
 
       default:
