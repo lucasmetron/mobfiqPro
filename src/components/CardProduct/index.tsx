@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { Text, View } from "react-native";
+import React, { useState, useEffect, useContext } from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Entypo from "react-native-vector-icons/Entypo";
 import { RFPercentage } from "react-native-responsive-fontsize";
+import { useNavigation } from "@react-navigation/native";
 
 import * as S from "./styles";
 import { ProductProps, SkusProps } from "types/ProductProps";
 import { color } from "styles/pallete";
-
+import ProductSelectedContext from "context/useProductSelected";
+import { stacksMain } from "Router/routes";
 interface CardProductProps {
   item: ProductProps;
 }
 
 export default function CardProduct({ item }: CardProductProps) {
+  const navigation: any = useNavigation();
+  const { setProductSelected } = useContext(ProductSelectedContext);
   const hideQuota = false;
   const [listSkusOrder, setListSkusOrder] = useState<SkusProps[]>();
   const [firstSkuByrOrderAndSellers, setFirstSkuByrOrderAndSellers] =
@@ -156,49 +160,61 @@ export default function CardProduct({ item }: CardProductProps) {
   }, [item]);
 
   return (
-    <S.container>
-      {firstSkuByrOrderAndSellers !== null &&
-      firstSkuByrOrderAndSellers !== undefined ? (
-        <S.img
-          source={{
-            uri:
-              firstSkuByrOrderAndSellers !== null
-                ? firstSkuByrOrderAndSellers?.Images[0].ImageUrl
-                : item.Skus[0].Images[0].ImageUrl,
-          }}
-        >
-          <S.likeBox>
-            <AntDesign
-              size={RFPercentage(1.8)}
-              color={color.interface.black}
-              name="hearto"
-            />
-          </S.likeBox>
-        </S.img>
-      ) : (
-        <S.noImage>
-          <Entypo name="image" size={30} color={color.interface.darkgray} />
-        </S.noImage>
-      )}
-      <S.infos>
+    <TouchableOpacity
+      onPress={() => {
+        setProductSelected(item);
+        navigation.navigate(stacksMain.productSelected);
+      }}
+    >
+      <S.container>
+        {firstSkuByrOrderAndSellers !== null &&
+        firstSkuByrOrderAndSellers !== undefined ? (
+          <S.img
+            source={{
+              uri:
+                firstSkuByrOrderAndSellers !== null
+                  ? firstSkuByrOrderAndSellers?.Images[0].ImageUrl
+                  : item.Skus[0].Images[0].ImageUrl,
+            }}
+          >
+            <S.likeBox>
+              <AntDesign
+                size={RFPercentage(1.8)}
+                color={color.interface.black}
+                name="hearto"
+              />
+            </S.likeBox>
+          </S.img>
+        ) : (
+          <S.noImage>
+            <Entypo name="image" size={30} color={color.interface.darkgray} />
+          </S.noImage>
+        )}
         <S.infos>
-          {item?.Brand && item?.Brand !== "" && (
-            <S.titleProductBrand numberOfLines={2}>
-              {item?.Brand || "sem brand"}
-            </S.titleProductBrand>
-          )}
+          <S.infos>
+            {item?.Brand && item?.Brand !== "" && (
+              <S.titleProductBrand numberOfLines={2}>
+                {item?.Brand || "sem brand"}
+              </S.titleProductBrand>
+            )}
 
-          <S.subTitleProduct numberOfLines={2}>{item?.Name}</S.subTitleProduct>
+            <S.subTitleProduct numberOfLines={2}>
+              {item?.Name}
+            </S.subTitleProduct>
 
-          {returnPrice(item, listSkusOrder !== undefined ? listSkusOrder : [])}
+            {returnPrice(
+              item,
+              listSkusOrder !== undefined ? listSkusOrder : []
+            )}
+          </S.infos>
+
+          <S.boxBtn>
+            <S.buyBtn>
+              <S.textBtn>COMPRAR</S.textBtn>
+            </S.buyBtn>
+          </S.boxBtn>
         </S.infos>
-
-        <S.boxBtn>
-          <S.buyBtn>
-            <S.textBtn>COMPRAR</S.textBtn>
-          </S.buyBtn>
-        </S.boxBtn>
-      </S.infos>
-    </S.container>
+      </S.container>
+    </TouchableOpacity>
   );
 }

@@ -6,6 +6,7 @@ import { ProductProps } from "types/ProductProps";
 import { reqProducts } from "./reqs";
 import Load from "components/Load";
 import CardProduct from "components/CardProduct";
+import { Text } from "react-native";
 
 interface ProductCarouselProps {
   item: ModuleHomeSaveOnBackProps;
