@@ -71,7 +71,7 @@ export default function ProductSelected() {
             }}
             renderItem={({ item }: BannerProps) => (
               <S.item>
-                <S.image source={{ uri: item.ImageUrl }} resizeMode="stretch" />
+                <S.image source={{ uri: item.ImageUrl }} resizeMode="contain" />
               </S.item>
             )}
           />

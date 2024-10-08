@@ -36,7 +36,7 @@ export const carouselImgs = styled.View`
   position: relative;
   width: 100%;
   height: ${Dimensions.get("window").height * 0.5}px;
-  background-color: ${color.interface.lightGray2};
+  background-color: ${color.interface.lightGray4};
 `;
 
 export const item = styled.View`
@@ -89,7 +89,7 @@ export const btnToBuyTxt = styled.Text`
 
 export const containerBalls = styled.View`
   position: absolute;
-  bottom: 10;
+  bottom: 10px;
   width: 100%;
   align-items: center;
   justify-content: center;
