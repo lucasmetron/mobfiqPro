@@ -1,16 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { Alert, Text, View } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { useNavigation } from "@react-navigation/native";
 
 import * as S from "./styles";
 import { color } from "styles/pallete";
 import { getMoreOptions } from "./reqs";
 import { MenuObjFromBack } from "types/MenuProps";
 import Load from "components/Load";
+import { stacksMore } from "Router/routes";
 
 export default function More() {
+  const navigation: any = useNavigation();
   const [isLoad, setIsLoad] = useState(false);
   const [menuObj, setMenuObj] = useState<MenuObjFromBack | null>(null);
+  console.log("menuObj: ", menuObj);
+
+  function redirectToRightRouterById(id: number) {
+    switch (id) {
+      case 15:
+        navigation.navigate(stacksMore.centralAtend);
+        return;
+
+      default:
+        Alert.alert("Erro", `Rota não configurada! ID:${id}`);
+        return;
+    }
+  }
 
   useEffect(() => {
     (async () => {
@@ -36,7 +52,10 @@ export default function More() {
             <S.title>{actualSection.Title}</S.title>
             {actualSection.Items.length > 0 ? (
               actualSection.Items.map((item, i2) => (
-                <S.boxOptions key={i2}>
+                <S.boxOptions
+                  onPress={() => redirectToRightRouterById(item.Redirect.Type)}
+                  key={i2}
+                >
                   <S.imgBox>
                     <S.icon resizeMode="contain" source={{ uri: item.Icon }} />
                   </S.imgBox>

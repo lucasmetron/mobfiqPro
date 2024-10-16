@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { stacksMore } from "Router/routes";
 import HeaderApp from "components/HeaderApp";
 import More from "Views/More";
+import CentralAtend from "Views/CentralAtend";
 
 const StackMore = createStackNavigator();
 
@@ -22,6 +23,10 @@ export default function Tabs() {
       initialRouteName={stacksMore.initial}
     >
       <StackMore.Screen name={stacksMore.initial} component={More} />
+      <StackMore.Screen
+        name={stacksMore.centralAtend}
+        component={CentralAtend}
+      />
     </StackMore.Navigator>
   );
 }

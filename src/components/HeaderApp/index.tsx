@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native";
 
 import * as S from "./styles";
 import HeaderDefault from "components/HeaderDefault";
-import { stacksProfile, stacksHome } from "Router/routes";
+import { stacksProfile, stacksHome, stacksMore } from "Router/routes";
 import HeaderHome from "components/HeaderHome";
 import HeaderSearch from "components/HeaderSearch";
 
@@ -23,6 +23,7 @@ export default function HeaderApp() {
       case stacksProfile.forgotPassword:
       case stacksProfile.createAcounte:
       case stacksHome.plp:
+      case stacksMore.centralAtend:
         return <HeaderDefault route={route} showBackArrow={true} />;
 
       default:
