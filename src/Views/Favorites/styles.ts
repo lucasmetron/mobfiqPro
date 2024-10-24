@@ -55,7 +55,7 @@ export const containerProduct = styled.View`
 
 export const cardProduct = styled.View`
   width: 95%;
-  height: 90px;
+  height: ${RFPercentage(15)}px;
   border-radius: 5px;
   flex-direction: row;
   align-items: center;
@@ -65,7 +65,7 @@ export const cardProduct = styled.View`
 `;
 
 export const img = styled.Image`
-  width: 50px;
+  width: 70px;
   height: 100%;
   border-radius: 5px;
   background-color: ${color.interface.blue};
