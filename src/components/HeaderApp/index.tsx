@@ -24,6 +24,7 @@ export default function HeaderApp() {
       case stacksProfile.createAcounte:
       case stacksHome.plp:
       case stacksMore.centralAtend:
+      case stacksMore.favorites:
         return <HeaderDefault route={route} showBackArrow={true} />;
 
       default:

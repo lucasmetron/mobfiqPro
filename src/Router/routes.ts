@@ -37,4 +37,5 @@ export const stacksCart = {
 export const stacksMore = {
   initial: "stacksMore-more",
   centralAtend: "stacksMore-centralAtend",
+  favorites: "stacksMore-favorites",
 };

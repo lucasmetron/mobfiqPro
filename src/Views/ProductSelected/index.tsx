@@ -10,7 +10,7 @@ import * as S from "./styles";
 import { color } from "styles/pallete";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import ProductSelectedContext from "context/useProductSelected";
-import { Images, ProductProps } from "types/ProductProps";
+import { Images } from "types/ProductProps";
 import { formatToBRL } from "utils/functions";
 
 interface BannerProps {
@@ -26,8 +26,6 @@ export default function ProductSelected() {
     ProductSelectedContext
   );
   const [indexPhoto, setIndexPhoto] = useState(0);
-
-  console.log("productSelected: ", productSelected);
 
   return (
     <S.container>

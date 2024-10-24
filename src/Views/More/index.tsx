@@ -14,12 +14,15 @@ export default function More() {
   const navigation: any = useNavigation();
   const [isLoad, setIsLoad] = useState(false);
   const [menuObj, setMenuObj] = useState<MenuObjFromBack | null>(null);
-  console.log("menuObj: ", menuObj);
 
   function redirectToRightRouterById(id: number) {
     switch (id) {
       case 15:
         navigation.navigate(stacksMore.centralAtend);
+        return;
+
+      case 19:
+        navigation.navigate(stacksMore.favorites);
         return;
 
       default:

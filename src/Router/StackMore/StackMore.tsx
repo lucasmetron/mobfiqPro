@@ -5,6 +5,7 @@ import { stacksMore } from "Router/routes";
 import HeaderApp from "components/HeaderApp";
 import More from "Views/More";
 import CentralAtend from "Views/CentralAtend";
+import Favorites from "Views/Favorites";
 
 const StackMore = createStackNavigator();
 
@@ -27,6 +28,7 @@ export default function Tabs() {
         name={stacksMore.centralAtend}
         component={CentralAtend}
       />
+      <StackMore.Screen name={stacksMore.favorites} component={Favorites} />
     </StackMore.Navigator>
   );
 }
