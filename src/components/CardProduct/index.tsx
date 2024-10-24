@@ -9,6 +9,7 @@ import * as S from "./styles";
 import { ProductProps, SkusProps } from "types/ProductProps";
 import { color } from "styles/pallete";
 import ProductSelectedContext from "context/useProductSelected";
+import useFavoritesContext from "context/useFavoritesContext";
 import { stacksMain } from "Router/routes";
 interface CardProductProps {
   item: ProductProps;
@@ -17,6 +18,7 @@ interface CardProductProps {
 export default function CardProduct({ item }: CardProductProps) {
   const navigation: any = useNavigation();
   const { setProductSelected } = useContext(ProductSelectedContext);
+  const { setFavorites, favorites } = useContext(useFavoritesContext);
   const hideQuota = false;
   const [listSkusOrder, setListSkusOrder] = useState<SkusProps[]>();
   const [firstSkuByrOrderAndSellers, setFirstSkuByrOrderAndSellers] =
@@ -152,6 +154,22 @@ export default function CardProduct({ item }: CardProductProps) {
     }
   }
 
+  function addProductInFavoriteList() {
+    let canAdd = true;
+
+    if (favorites.length > 0) {
+      favorites.forEach((i) => {
+        if (i.Id === item.Id) {
+          canAdd = false;
+        }
+      });
+    }
+
+    if (canAdd) {
+      setFavorites((favorites) => [...favorites, item]);
+    }
+  }
+
   //toda vez que o item mudar eu ordeno a lista pelo order (por que vem desordenado) e salvo o primeiro item da lista já ordenada com Sellers.Quantity > 0
   useEffect(() => {
     if (item.Skus.length > 0) {
@@ -179,6 +197,7 @@ export default function CardProduct({ item }: CardProductProps) {
           >
             <S.likeBox>
               <AntDesign
+                onPress={addProductInFavoriteList}
                 size={RFPercentage(1.8)}
                 color={color.interface.black}
                 name="hearto"

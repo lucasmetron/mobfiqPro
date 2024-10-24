@@ -45,4 +45,82 @@ export const textBtn = styled.Text`
   font-size: ${RFPercentage(2)}px;
   font-family: ${fontsName.title};
   color: ${color.interface.darkgray};
+  text-transform: uppercase;
+`;
+
+export const containerProduct = styled.View`
+  align-items: center;
+  justify-content: center;
+`;
+
+export const cardProduct = styled.View`
+  width: 95%;
+  height: 90px;
+  border-radius: 5px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: ${color.interface.white};
+`;
+
+export const img = styled.Image`
+  width: 50px;
+  height: 100%;
+  border-radius: 5px;
+  background-color: ${color.interface.blue};
+`;
+
+export const boxInfos = styled.View`
+  height: 100%;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-left: 10px;
+`;
+
+export const boxBtns = styled.View`
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const favoriteAndDeleteBtns = styled.View`
+  flex-direction: row;
+  gap: 10px;
+`;
+
+export const buyBtn = styled.TouchableOpacity`
+  padding: 5px 15px;
+  border-radius: 20px;
+  border: 1px solid ${color.interface.blue1};
+`;
+
+export const textBuyBtn = styled.Text`
+  font-size: ${RFPercentage(1)}px;
+  font-family: ${fontsName.title};
+  color: ${color.interface.blue1};
+  text-transform: uppercase;
+`;
+
+export const iconHeartSmall = styled.View`
+  width: 25px;
+  height: 25px;
+  align-self: flex-end;
+  border-radius: 12.5px;
+  align-items: center;
+  justify-content: center;
+  background-color: ${color.interface.red};
+`;
+
+export const price = styled.Text`
+  font-size: ${RFPercentage(1.5)}px;
+  font-family: ${fontsName.title};
+  color: ${color.interface.blue1};
+`;
+
+export const title = styled.Text`
+  font-size: ${RFPercentage(1.7)}px;
+  font-family: ${fontsName.text};
+  color: ${color.interface.darkgray};
 `;
