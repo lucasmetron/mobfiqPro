@@ -8,7 +8,7 @@ import { color } from "styles/pallete";
 import { getMoreOptions } from "./reqs";
 import { MenuObjFromBack } from "types/MenuProps";
 import Load from "components/Load";
-import { stacksMore } from "Router/routes";
+import { stacksMore, stacksCart } from "Router/routes";
 
 export default function More() {
   const navigation: any = useNavigation();
@@ -17,6 +17,10 @@ export default function More() {
 
   function redirectToRightRouterById(id: number) {
     switch (id) {
+      case 5:
+        navigation.navigate(stacksCart.initial);
+        return;
+
       case 15:
         navigation.navigate(stacksMore.centralAtend);
         return;

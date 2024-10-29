@@ -68,7 +68,7 @@ export const img = styled.Image`
   width: 70px;
   height: 100%;
   border-radius: 5px;
-  background-color: ${color.interface.blue};
+  background-color: ${color.interface.lightGray2};
 `;
 
 export const boxInfos = styled.View`
