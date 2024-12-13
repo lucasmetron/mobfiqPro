@@ -1,5 +1,5 @@
-import React from "react";
-import { Dimensions, Platform } from "react-native";
+import React, { useContext } from "react";
+import { Dimensions, StyleSheet, View, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Entypo from "react-native-vector-icons/Entypo";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -14,10 +14,13 @@ import { fontsName } from "styles/fonts";
 import StackProfile from "./StackProfile";
 import StackCategories from "./StackCategories";
 import StackCart from "./StackCart";
+import useCartContext from "context/useCartContext";
 
 const Tab = createBottomTabNavigator();
 
 export default function Tabs() {
+  const { productsInCart } = useContext(useCartContext);
+
   function isShowHeaderApp(nameRoute: string) {
     return nameRoute.includes("tab-") ? <HeaderApp /> : null;
   }
@@ -57,11 +60,21 @@ export default function Tabs() {
 
             case tabsRoutes.cart.name:
               return (
-                <MaterialIcons
-                  name={tabsRoutes.cart.icon}
-                  size={Dimensions.get("window").height * 0.025}
-                  color={color}
-                />
+                <View style={styles.cartBox}>
+                  {productsInCart.length > 0 && (
+                    <View style={styles.qtdItensInCartBox}>
+                      <Text style={styles.qtdItensInCartText}>
+                        {productsInCart.length}
+                      </Text>
+                    </View>
+                  )}
+
+                  <MaterialIcons
+                    name={tabsRoutes.cart.icon}
+                    size={Dimensions.get("window").height * 0.025}
+                    color={color}
+                  />
+                </View>
               );
 
             case tabsRoutes.more.name:
@@ -121,3 +134,26 @@ export default function Tabs() {
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  cartBox: {
+    position: "relative",
+  },
+
+  qtdItensInCartBox: {
+    position: "absolute",
+    top: -10,
+    right: -20,
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: color.interface.red,
+  },
+
+  qtdItensInCartText: {
+    fontSize: 10,
+    color: color.interface.white,
+  },
+});
