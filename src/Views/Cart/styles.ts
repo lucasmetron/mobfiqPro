@@ -113,6 +113,7 @@ export const input = styled.TextInput`
 `;
 
 export const noProducts = styled.View`
+  flex: 1;
   padding: ${RFPercentage(2)}px;
   align-items: center;
   justify-content: center;

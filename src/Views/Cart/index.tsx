@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Text } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
@@ -8,9 +8,10 @@ import { ProductProps } from "types/ProductProps";
 import Load from "components/Load";
 import { formatToBRL } from "utils/functions";
 import { color } from "styles/pallete";
+import useCartContext from "context/useCartContext";
 
 export default function Cart() {
-  const [products, setProducts] = useState<ProductProps[]>([]);
+  const { productsInCart, setProductsInCart } = useContext(useCartContext);
   const [isLoad, setIsLoad] = useState(false);
 
   function returnTotalPrice(products: ProductProps[]) {
@@ -28,7 +29,7 @@ export default function Cart() {
       setIsLoad(true);
       const newProducts = await getProduct();
       if (newProducts.length > 0) {
-        setProducts(newProducts);
+        // setProductsInCart(newProducts);
       }
       setIsLoad(false);
     })();
@@ -40,10 +41,10 @@ export default function Cart() {
     </S.loadBox>
   ) : (
     <S.container>
-      {products.length > 0 ? (
+      {productsInCart.length > 0 ? (
         <>
           <S.cartScroll contentContainerStyle={{ gap: 10 }}>
-            {products.map((item) => (
+            {productsInCart.map((item) => (
               <S.item key={item.Id}>
                 <S.boxPhotoAndTitleProdutc>
                   <S.imgProduct
@@ -120,7 +121,9 @@ export default function Cart() {
 
             <S.infosBuy>
               <S.textInfosBuy>Preço</S.textInfosBuy>
-              <S.textInfosBuy>{returnTotalPrice(products)}</S.textInfosBuy>
+              <S.textInfosBuy>
+                {returnTotalPrice(productsInCart)}
+              </S.textInfosBuy>
             </S.infosBuy>
 
             <S.btnBuy>

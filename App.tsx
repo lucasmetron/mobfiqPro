@@ -17,6 +17,7 @@ import { HeaderDefaultProvider } from "context/useHeaderDefaultContext";
 import { ProductsListProvider } from "context/useProductsList";
 import { ProductSelectedProvider } from "context/useProductSelected";
 import { FavoritesProvider } from "context/useFavoritesContext";
+import { CartProvider } from "context/useCartContext";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -41,20 +42,22 @@ export default function App() {
         onLayout={onLayputRootView}
       >
         <FavoritesProvider>
-          <ProductSelectedProvider>
-            <ProductsListProvider>
-              <HeaderDefaultProvider>
-                <DataHomeProvider>
-                  <Router />
-                  <StatusBar
-                    style="dark"
-                    backgroundColor={color.interface.backgroundColor}
-                  />
-                  <Toast position="top" topOffset={70} />
-                </DataHomeProvider>
-              </HeaderDefaultProvider>
-            </ProductsListProvider>
-          </ProductSelectedProvider>
+          <CartProvider>
+            <ProductSelectedProvider>
+              <ProductsListProvider>
+                <HeaderDefaultProvider>
+                  <DataHomeProvider>
+                    <Router />
+                    <StatusBar
+                      style="dark"
+                      backgroundColor={color.interface.backgroundColor}
+                    />
+                    <Toast position="top" topOffset={70} />
+                  </DataHomeProvider>
+                </HeaderDefaultProvider>
+              </ProductsListProvider>
+            </ProductSelectedProvider>
+          </CartProvider>
         </FavoritesProvider>
       </SafeAreaView>
     </SafeAreaProvider>
