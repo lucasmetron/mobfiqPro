@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Dimensions } from "react-native";
 import { Text } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import * as S from "./styles";
 import { getProduct } from "./reqs";
@@ -11,6 +13,7 @@ import { color } from "styles/pallete";
 import useCartContext from "context/useCartContext";
 
 export default function Cart() {
+  const { height } = Dimensions.get("window");
   const { productsInCart, setProductsInCart } = useContext(useCartContext);
   const [isLoad, setIsLoad] = useState(false);
 
@@ -24,15 +27,23 @@ export default function Cart() {
     return formatToBRL(totalPrice);
   }
 
+  function deleteProductFromCard(productToDelete: ProductProps) {
+    const newList = productsInCart.filter(
+      (product) => product.Id !== productToDelete.Id
+    );
+    setProductsInCart(newList);
+  }
+
   useEffect(() => {
-    (async () => {
-      setIsLoad(true);
-      const newProducts = await getProduct();
-      if (newProducts.length > 0) {
-        // setProductsInCart(newProducts);
-      }
-      setIsLoad(false);
-    })();
+    setIsLoad(false);
+    // (async () => {
+    //   setIsLoad(true);
+    //   const newProducts = await getProduct();
+    //   if (newProducts.length > 0) {
+    //     setProductsInCart(newProducts);
+    //   }
+    //   setIsLoad(false);
+    // })();
   }, []);
 
   return isLoad ? (
@@ -45,7 +56,7 @@ export default function Cart() {
         <>
           <S.cartScroll contentContainerStyle={{ gap: 10 }}>
             {productsInCart.map((item) => (
-              <S.item key={item.Id}>
+              <S.item key={item.Id} $heightScreen={height}>
                 <S.boxPhotoAndTitleProdutc>
                   <S.imgProduct
                     resizeMode="stretch"
@@ -57,6 +68,18 @@ export default function Cart() {
                 </S.boxPhotoAndTitleProdutc>
 
                 <S.qtdAndPrice>
+                  <S.deleteBox
+                    onPress={() => {
+                      deleteProductFromCard(item);
+                    }}
+                  >
+                    <MaterialCommunityIcons
+                      name="delete"
+                      size={25}
+                      color={color.interface.red}
+                    />
+                  </S.deleteBox>
+
                   <S.qtdBox>
                     <S.btn>
                       <AntDesign

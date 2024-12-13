@@ -4,6 +4,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import Entypo from "react-native-vector-icons/Entypo";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { useNavigation } from "@react-navigation/native";
+import Toast from "react-native-toast-message";
 
 import * as S from "./styles";
 import { ProductProps, SkusProps } from "types/ProductProps";
@@ -11,11 +12,14 @@ import { color } from "styles/pallete";
 import ProductSelectedContext from "context/useProductSelected";
 import useFavoritesContext from "context/useFavoritesContext";
 import { stacksMain } from "Router/routes";
+import useCartContext from "context/useCartContext";
+
 interface CardProductProps {
   item: ProductProps;
 }
 
 export default function CardProduct({ item }: CardProductProps) {
+  const { setProductsInCart, productsInCart } = useContext(useCartContext);
   const navigation: any = useNavigation();
   const { setProductSelected } = useContext(ProductSelectedContext);
   const { setFavorites, favorites } = useContext(useFavoritesContext);
@@ -170,6 +174,33 @@ export default function CardProduct({ item }: CardProductProps) {
     }
   }
 
+  function addProductOnCart(productToAdd: ProductProps) {
+    let productAlreadyInTheList = false;
+
+    if (productsInCart.length > 0) {
+      productsInCart.forEach((product) => {
+        if (product.Id === productToAdd.Id) {
+          productAlreadyInTheList = true;
+        }
+      });
+    }
+
+    if (productAlreadyInTheList) {
+      Toast.show({
+        type: "info",
+        text1: "Atenção",
+        text2: "Produto já existe no carrinho",
+      });
+    } else {
+      setProductsInCart((obj) => [...obj, productToAdd]);
+      Toast.show({
+        type: "success",
+        text1: "Sucesso!",
+        text2: "Produto adicionado ao carrinho.",
+      });
+    }
+  }
+
   //toda vez que o item mudar eu ordeno a lista pelo order (por que vem desordenado) e salvo o primeiro item da lista já ordenada com Sellers.Quantity > 0
   useEffect(() => {
     if (item.Skus.length > 0) {
@@ -228,7 +259,7 @@ export default function CardProduct({ item }: CardProductProps) {
           </S.infos>
 
           <S.boxBtn>
-            <S.buyBtn>
+            <S.buyBtn onPress={() => addProductOnCart(item)}>
               <S.textBtn>COMPRAR</S.textBtn>
             </S.buyBtn>
           </S.boxBtn>

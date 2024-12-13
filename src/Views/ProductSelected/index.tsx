@@ -5,6 +5,7 @@ import Fontisto from "react-native-vector-icons/Fontisto";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { useNavigation } from "@react-navigation/native";
 import Carousel from "react-native-reanimated-carousel";
+import Toast from "react-native-toast-message";
 
 import * as S from "./styles";
 import { color } from "styles/pallete";
@@ -12,6 +13,8 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import ProductSelectedContext from "context/useProductSelected";
 import { Images } from "types/ProductProps";
 import { formatToBRL } from "utils/functions";
+import useCartContext from "context/useCartContext";
+import { ProductProps } from "types/ProductProps";
 
 interface BannerProps {
   item: Images;
@@ -20,12 +23,40 @@ interface BannerProps {
 }
 
 export default function ProductSelected() {
+  const { setProductsInCart, productsInCart } = useContext(useCartContext);
   const width = Dimensions.get("window").width;
   const navigator = useNavigation();
   const { productSelected, setProductSelected } = useContext(
     ProductSelectedContext
   );
   const [indexPhoto, setIndexPhoto] = useState(0);
+
+  function addProductOnCart(productToAdd: ProductProps) {
+    let productAlreadyInTheList = false;
+
+    if (productsInCart.length > 0) {
+      productsInCart.forEach((product) => {
+        if (product.Id === productToAdd.Id) {
+          productAlreadyInTheList = true;
+        }
+      });
+    }
+
+    if (productAlreadyInTheList) {
+      Toast.show({
+        type: "info",
+        text1: "Atenção",
+        text2: "Produto já existe no carrinho",
+      });
+    } else {
+      setProductsInCart((obj) => [...obj, productToAdd]);
+      Toast.show({
+        type: "success",
+        text1: "Sucesso!",
+        text2: "Produto adicionado ao carrinho.",
+      });
+    }
+  }
 
   return (
     <S.container>
@@ -86,7 +117,13 @@ export default function ProductSelected() {
         </S.nameProduct>
       </S.content>
 
-      <S.btnToBuy>
+      <S.btnToBuy
+        onPress={() => {
+          if (productSelected !== null) {
+            addProductOnCart(productSelected);
+          }
+        }}
+      >
         <S.line />
         <S.price>
           <S.priceTxt>Preço</S.priceTxt>

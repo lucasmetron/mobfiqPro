@@ -34,11 +34,14 @@ export const loadBox = styled.View`
   justify-content: center;
 `;
 
-export const item = styled.View`
+export const item = styled.View<{ $heightScreen: number }>`
   width: 100%;
-  min-height: fit-content;
+  height: ${(props) => `${props.$heightScreen * 0.2}px`};
   background-color: ${color.interface.white};
   padding: ${RFPercentage(2)}px;
+  display: flex;
+  justify-content: space-between;
+  gap: ${RFPercentage(2)}px;
   border-radius: 5px;
 `;
 
@@ -52,6 +55,7 @@ export const boxPhotoAndTitleProdutc = styled.View`
 export const imgProduct = styled.Image`
   flex: 2.5;
   width: 100%;
+  height: 100%;
   border-radius: 5px;
   height: ${Dimensions.get("window").height * 0.1}px;
   background-color: ${color.interface.lightGray2};
@@ -69,7 +73,12 @@ export const qtdAndPrice = styled.View`
   margin-top: 10px;
 `;
 
+export const deleteBox = styled.TouchableOpacity`
+  padding: 5px;
+`;
+
 export const qtdBox = styled.View`
+  display: none;
   min-width: 35%;
   flex-direction: row;
   align-items: center;
