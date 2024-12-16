@@ -13,7 +13,9 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.MobfiqPro"
+      "bundleIdentifier": "com.anonymous.MobfiqPro",
+      "distribution": "internal",
+      "simulator": true
     },
     "android": {
       "adaptiveIcon": {
@@ -25,8 +27,11 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"],
+    "extra": {
+      "eas": {
+        "projectId": "6eaa145d-457b-4fa4-a7f5-a956ed0f33ab"
+      }
+    }
   }
 }
