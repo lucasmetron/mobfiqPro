@@ -18,6 +18,7 @@ import { ProductsListProvider } from "context/useProductsList";
 import { ProductSelectedProvider } from "context/useProductSelected";
 import { FavoritesProvider } from "context/useFavoritesContext";
 import { CartProvider } from "context/useCartContext";
+import AppsFlyer from "components/AppsFlyer";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -47,6 +48,7 @@ export default function App() {
               <ProductsListProvider>
                 <HeaderDefaultProvider>
                   <DataHomeProvider>
+                    <AppsFlyer />
                     <Router />
                     <StatusBar
                       style="dark"

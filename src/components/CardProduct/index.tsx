@@ -13,6 +13,11 @@ import ProductSelectedContext from "context/useProductSelected";
 import useFavoritesContext from "context/useFavoritesContext";
 import { stacksMain } from "Router/routes";
 import useCartContext from "context/useCartContext";
+import { appsFlyerEvents } from "components/AppsFlyer/actions";
+import {
+  registerEvent,
+  returnProductObjToEvent,
+} from "components/AppsFlyer/functions";
 
 interface CardProductProps {
   item: ProductProps;
@@ -193,6 +198,10 @@ export default function CardProduct({ item }: CardProductProps) {
       });
     } else {
       setProductsInCart((obj) => [...obj, productToAdd]);
+      registerEvent(
+        appsFlyerEvents.addInCart,
+        returnProductObjToEvent(productToAdd)
+      );
       Toast.show({
         type: "success",
         text1: "Sucesso!",
@@ -213,6 +222,10 @@ export default function CardProduct({ item }: CardProductProps) {
       onPress={() => {
         setProductSelected(item);
         navigation.navigate(stacksMain.productSelected);
+        registerEvent(
+          appsFlyerEvents.openProdutct,
+          returnProductObjToEvent(item)
+        );
       }}
     >
       <S.container>

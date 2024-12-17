@@ -5,12 +5,17 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import * as S from "./styles";
-import { getProduct } from "./reqs";
+// import { getProduct } from "./reqs";
 import { ProductProps } from "types/ProductProps";
 import Load from "components/Load";
 import { formatToBRL } from "utils/functions";
 import { color } from "styles/pallete";
 import useCartContext from "context/useCartContext";
+import {
+  registerEvent,
+  returnProductObjToEvent,
+} from "components/AppsFlyer/functions";
+import { appsFlyerEvents } from "components/AppsFlyer/actions";
 
 export default function Cart() {
   const { height } = Dimensions.get("window");
@@ -32,6 +37,10 @@ export default function Cart() {
       (product) => product.Id !== productToDelete.Id
     );
     setProductsInCart(newList);
+    registerEvent(
+      appsFlyerEvents.removeFromCart,
+      returnProductObjToEvent(productToDelete)
+    );
   }
 
   useEffect(() => {
@@ -149,7 +158,13 @@ export default function Cart() {
               </S.textInfosBuy>
             </S.infosBuy>
 
-            <S.btnBuy>
+            <S.btnBuy
+              onPress={() => {
+                registerEvent(appsFlyerEvents.buyOrder, {
+                  totalValueOrder: returnTotalPrice(productsInCart),
+                });
+              }}
+            >
               <S.textBtnBuy>Fechar pedido</S.textBtnBuy>
             </S.btnBuy>
           </S.boxFinishBuy>
