@@ -6,7 +6,7 @@ const AppsFlyer: React.FC = () => {
     appsFlyer.initSdk(
       {
         devKey: "75Ecej2pGgbRKDQh8vnDbg",
-        isDebug: false,
+        isDebug: true,
         appId: "6739498757",
         onInstallConversionDataListener: true, //Optional
         onDeepLinkListener: true, //Optional
