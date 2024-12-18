@@ -14,9 +14,11 @@ const Router: React.FC = () => {
     useContext(DataHomeContext);
 
   const linking = {
-    prefixes: [prefix],
-    screens: {
-      product: "/product/:productId",
+    prefixes: [prefix], // Prefixo do deep link
+    config: {
+      screens: {
+        product: "product/:productId", // Define que `productId` será extraído como parâmetro
+      },
     },
   };
 

@@ -1,25 +1,7 @@
 import React, { useEffect } from "react";
-import appsFlyer, { UnifiedDeepLinkData } from "react-native-appsflyer";
+import appsFlyer from "react-native-appsflyer";
 
 const AppsFlyer: React.FC = () => {
-  // Start a listener for deep link
-  useEffect(() => {
-    appsFlyer.onDeepLink((deepLinkData: any) => {
-      console.log("Deep Link Data:", deepLinkData);
-
-      // Verifica as propriedades disponíveis no objeto retornado
-      const deepLinkValue =
-        deepLinkData?.deepLinkValue || deepLinkData?.deepLinkParameters?.screen;
-
-      if (deepLinkValue) {
-        console.log("Navigate to screen:", deepLinkValue);
-        // Exemplo: navegação para a tela com base no deep link
-      } else {
-        console.warn("Deep link value not found.");
-      }
-    });
-  }, []);
-
   // Start AppsFlyer SDK
   useEffect(() => {
     appsFlyer.initSdk(

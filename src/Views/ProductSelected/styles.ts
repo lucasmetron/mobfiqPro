@@ -115,3 +115,10 @@ export const nameProduct = styled.Text`
   padding: 10px;
   color: ${color.interface.darkgray};
 `;
+
+export const centralize = styled.View`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;

@@ -7,7 +7,7 @@ import {
   Inter_400Regular,
   Inter_700Bold,
 } from "@expo-google-fonts/inter";
-import * as SplashScreen from "expo-splash-screen";
+// import * as SplashScreen from "expo-splash-screen";
 import Toast from "react-native-toast-message";
 
 import { color } from "styles/pallete";
@@ -27,9 +27,9 @@ export default function App() {
     MobfiqFont: require("./assets/fonts/mobfiq-font.ttf"),
   });
 
-  const onLayputRootView = useCallback(async () => {
-    await SplashScreen.hideAsync();
-  }, [fontsLoaded]);
+  // const onLayputRootView = useCallback(async () => {
+  //   await SplashScreen.hideAsync();
+  // }, [fontsLoaded]);
 
   if (!fontsLoaded) {
     return null;
@@ -40,7 +40,7 @@ export default function App() {
       <SafeAreaView
         style={styles.container}
         edges={["top", "bottom", "left", "right"]}
-        onLayout={onLayputRootView}
+        // onLayout={onLayputRootView}
       >
         <FavoritesProvider>
           <CartProvider>
