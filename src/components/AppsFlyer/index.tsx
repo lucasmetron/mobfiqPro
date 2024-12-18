@@ -4,6 +4,21 @@ import appsFlyer from "react-native-appsflyer";
 const AppsFlyer: React.FC = () => {
   // Start AppsFlyer SDK
   useEffect(() => {
+    //DeepLink
+    appsFlyer.onDeepLink((deepLinkData: any) => {
+      console.log("Deep Link Data:", deepLinkData);
+
+      const deepLinkValue =
+        deepLinkData?.deepLinkValue || deepLinkData?.deepLinkParameters?.screen;
+
+      if (deepLinkValue) {
+        console.log("Navigate to screen:", deepLinkValue);
+      } else {
+        console.warn("Deep link value not found.");
+      }
+    });
+
+    //Start appsflyer
     appsFlyer.initSdk(
       {
         devKey: "75Ecej2pGgbRKDQh8vnDbg",
@@ -21,12 +36,12 @@ const AppsFlyer: React.FC = () => {
       }
     );
 
-    // Adiciona o listener para o evento de conversão de instalação
+    //Add listener for the installation conversion event
     const removeListener = appsFlyer.onInstallConversionData((data) => {
       console.log("Install Conversion Data received:", data);
     });
 
-    // Remove o listener ao desmontar o componente
+    //Remove the listener when unmounting the component
     return () => {
       if (removeListener) {
         removeListener();
