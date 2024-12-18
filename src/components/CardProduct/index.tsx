@@ -198,6 +198,7 @@ export default function CardProduct({ item }: CardProductProps) {
       });
     } else {
       setProductsInCart((obj) => [...obj, productToAdd]);
+
       registerEvent(
         appsFlyerEvents.addInCart,
         returnProductObjToEvent(productToAdd)

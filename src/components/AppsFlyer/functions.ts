@@ -6,10 +6,10 @@ export function registerEvent(event: string, value: object) {
     event,
     value,
     (res) => {
-      console.log("evento deu certo", res);
+      console.log("success - action", res);
     },
     (err) => {
-      console.error("evento deu errado", err);
+      console.error("error - action", err);
     }
   );
 }
