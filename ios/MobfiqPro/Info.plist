@@ -27,6 +27,7 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
+          <string>mobfiqpro</string>
           <string>com.anonymous.MobfiqPro</string>
         </array>
       </dict>

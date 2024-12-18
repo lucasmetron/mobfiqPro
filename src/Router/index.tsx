@@ -1,14 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet, Image } from "react-native";
+import * as Linking from "expo-linking";
 
 import StackMain from "./StackMain/StackMain";
 import { getHome } from "utils/functions";
 import DataHomeContext from "context/useHomeContext";
 
+const prefix = Linking.createURL("/");
+
 const Router: React.FC = () => {
   const { setDataHome, isLoadData, setIsLoadData } =
     useContext(DataHomeContext);
+
+  const linking = {
+    prefixes: [prefix],
+    screens: {
+      product: "/product/:productId",
+    },
+  };
 
   useEffect(() => {
     (async () => {
@@ -19,7 +29,7 @@ const Router: React.FC = () => {
   }, []);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       {isLoadData ? (
         <Image
           style={styles.imgInitial}

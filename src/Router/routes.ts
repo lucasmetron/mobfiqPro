@@ -2,7 +2,7 @@ export const stacksMain = {
   tabs: "stacksMain-tab",
   login: "stacksMain-login",
   teste: "stacksMain-test",
-  productSelected: "stacksMain-productSelected",
+  productSelected: "product",
 };
 
 export const tabsRoutes = {

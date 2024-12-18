@@ -4,7 +4,6 @@
   <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
   <uses-permission android:name="android.permission.VIBRATE"/>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
   <queries>
     <intent>
       <action android:name="android.intent.action.VIEW"/>
@@ -12,55 +11,24 @@
       <data android:scheme="https"/>
     </intent>
   </queries>
-  <application 
-    android:name=".MainApplication" 
-    android:label="@string/app_name" 
-    android:icon="@mipmap/ic_launcher" 
-    android:roundIcon="@mipmap/ic_launcher_round" 
-    android:allowBackup="true" 
-    android:theme="@style/AppTheme">
-    
+  <application android:name=".MainApplication" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:allowBackup="true" android:theme="@style/AppTheme">
     <meta-data android:name="expo.modules.updates.ENABLED" android:value="false"/>
     <meta-data android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH" android:value="ALWAYS"/>
     <meta-data android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS" android:value="0"/>
-    <meta-data android:name="AF_DEV_KEY" android:value="75Ecej2pGgbRKDQh8vnDbg" />
-    <meta-data android:name="com.appsflyer.sdk.AF_INTEGRATION_TYPE" android:value="react_native" />
-
-    <activity 
-      android:name=".MainActivity" 
-      android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode" 
-      android:launchMode="singleTask" 
-      android:windowSoftInputMode="adjustResize" 
-      android:theme="@style/Theme.App.SplashScreen" 
-      android:exported="true" 
-      android:screenOrientation="portrait">
-      
-      <!-- Intent para inicializar o aplicativo -->
+    <activity android:name=".MainActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode" android:launchMode="singleTask" android:windowSoftInputMode="adjustResize" android:theme="@style/Theme.App.SplashScreen" android:exported="true" android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
-      
-      <!-- Intent para deep linking -->
       <intent-filter>
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <!-- Esquema principal do seu aplicativo -->
-        <data android:scheme="com.anonymous.MobfiqPro" android:host="your_host" />
-      </intent-filter>
-      
-      <!-- Outro esquema (se necessário) -->
-      <intent-filter>
-        <action android:name="android.intent.action.VIEW"/>
-        <category android:name="android.intent.category.DEFAULT"/>
-        <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="exp+mobfiqpro" android:host="your_host" />
+        <data android:scheme="mobfiqpro"/>
+        <data android:scheme="com.anonymous.MobfiqPro"/>
+        <data android:scheme="exp+mobfiqpro"/>
       </intent-filter>
     </activity>
-
-    <activity 
-      android:name="com.facebook.react.devsupport.DevSettingsActivity" 
-      android:exported="false"/>
+    <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" android:exported="false"/>
   </application>
 </manifest>

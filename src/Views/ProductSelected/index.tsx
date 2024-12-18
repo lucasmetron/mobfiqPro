@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Dimensions, Text } from "react-native";
+import React, { useContext, useLayoutEffect, useState } from "react";
+import { Dimensions } from "react-native";
 import MaterialIconsfrom from "react-native-vector-icons/MaterialIcons";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import { RFPercentage } from "react-native-responsive-fontsize";
@@ -27,14 +27,21 @@ interface BannerProps {
   animationValue: any;
 }
 
-export default function ProductSelected() {
+interface ProductSelectedProps {
+  route?: {
+    params: {
+      productId: string;
+    };
+  };
+}
+
+export default function ProductSelected({ route }: ProductSelectedProps) {
   const { setProductsInCart, productsInCart } = useContext(useCartContext);
   const width = Dimensions.get("window").width;
   const navigator = useNavigation();
   const { productSelected, setProductSelected } = useContext(
     ProductSelectedContext
   );
-  console.log("productSelected: ", productSelected);
   const [indexPhoto, setIndexPhoto] = useState(0);
 
   function addProductOnCart(productToAdd: ProductProps) {
@@ -67,6 +74,11 @@ export default function ProductSelected() {
       });
     }
   }
+
+  useLayoutEffect(() => {
+    console.log("route: ", route);
+    console.log("productSelected: ", productSelected);
+  }, []);
 
   return (
     <S.container>

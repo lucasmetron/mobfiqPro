@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "mobfiqpro",
     "name": "MobfiqPro",
     "slug": "MobfiqPro",
     "version": "1.0.0",
