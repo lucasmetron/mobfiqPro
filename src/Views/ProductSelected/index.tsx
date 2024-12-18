@@ -15,6 +15,11 @@ import { Images } from "types/ProductProps";
 import { formatToBRL } from "utils/functions";
 import useCartContext from "context/useCartContext";
 import { ProductProps } from "types/ProductProps";
+import { appsFlyerEvents } from "components/AppsFlyer/actions";
+import {
+  registerEvent,
+  returnProductObjToEvent,
+} from "components/AppsFlyer/functions";
 
 interface BannerProps {
   item: Images;
@@ -29,6 +34,7 @@ export default function ProductSelected() {
   const { productSelected, setProductSelected } = useContext(
     ProductSelectedContext
   );
+  console.log("productSelected: ", productSelected);
   const [indexPhoto, setIndexPhoto] = useState(0);
 
   function addProductOnCart(productToAdd: ProductProps) {
@@ -50,6 +56,10 @@ export default function ProductSelected() {
       });
     } else {
       setProductsInCart((obj) => [...obj, productToAdd]);
+      registerEvent(
+        appsFlyerEvents.addInCart,
+        returnProductObjToEvent(productToAdd)
+      );
       Toast.show({
         type: "success",
         text1: "Sucesso!",
@@ -131,6 +141,7 @@ export default function ProductSelected() {
             {formatToBRL(productSelected?.Skus[0].MeasurementPrice || 0)}
           </S.priceTxt>
         </S.price>
+
         <S.btnToBuyTxt>comprar</S.btnToBuyTxt>
       </S.btnToBuy>
     </S.container>
