@@ -33,6 +33,7 @@
       "eas": {
         "projectId": "6eaa145d-457b-4fa4-a7f5-a956ed0f33ab"
       }
-    }
+    },
+    "plugins": [["react-native-appsflyer", {}]]
   }
 }

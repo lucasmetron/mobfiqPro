@@ -202,6 +202,7 @@ export default function CardProduct({ item }: CardProductProps) {
         appsFlyerEvents.addInCart,
         returnProductObjToEvent(productToAdd)
       );
+
       Toast.show({
         type: "success",
         text1: "Sucesso!",
