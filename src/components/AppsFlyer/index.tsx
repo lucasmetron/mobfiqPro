@@ -6,6 +6,8 @@ import { campaignProductSelected } from "./functions";
 const AppsFlyer: React.FC = () => {
   const navigation: any = useNavigation();
 
+  console.log("process.env.TOKEN_APPS_FLYER: ", process.env.TOKEN_APPS_FLYER);
+
   // Start AppsFlyer SDK
   useEffect(() => {
     //DeepLink
@@ -31,9 +33,9 @@ const AppsFlyer: React.FC = () => {
     //Start appsflyer
     appsFlyer.initSdk(
       {
-        devKey: "75Ecej2pGgbRKDQh8vnDbg",
+        devKey: process.env.TOKEN_APPS_FLYER || "",
         isDebug: true,
-        appId: "6739498757",
+        appId: process.env.ID_APPLE || "",
         onInstallConversionDataListener: true, // Optional
         onDeepLinkListener: true, // Optional
         timeToWaitForATTUserAuthorization: 10, // for iOS 14.5
