@@ -7,6 +7,7 @@ import StackMain from "./StackMain/StackMain";
 import { getHome } from "utils/functions";
 import DataHomeContext from "context/useHomeContext";
 import AppsFlyer from "components/AppsFlyer";
+import { stacksMain } from "./routes";
 
 const prefix = Linking.createURL("/");
 
@@ -15,10 +16,10 @@ const Router: React.FC = () => {
     useContext(DataHomeContext);
 
   const linking = {
-    prefixes: [prefix], // Prefixo do deep link
+    prefixes: [prefix],
     config: {
       screens: {
-        product: "product/:productId", // Define que `productId` será extraído como parâmetro
+        product: `${stacksMain.productSelected}/:productId`,
       },
     },
   };
