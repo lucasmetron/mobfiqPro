@@ -40,6 +40,14 @@ Before starting, make sure you have the following installed:
 
 2. Update the `android/app/src/main/AndroidManifest.xml` and iOS `AppDelegate.m` or `AppDelegate.swift` for deep linking as per AppsFlyer documentation.
 
+3. Modify the `.env.example` file:
+   - Rename it to `.env`.
+   - Fill in the following variables with your own data:
+     ```env
+     TOKEN_APPS_FLYER=your_apps_flyer_token
+     ID_APPLE=your_apple_app_id
+     ```
+
 ## Running the App
 
 ### For iOS
@@ -96,6 +104,5 @@ Before starting, make sure you have the following installed:
 
 - For iOS build issues, ensure that Xcode and CocoaPods are up to date.
 - For Android build issues, confirm that Android Studio is configured with the correct SDK versions.
-
 
 
