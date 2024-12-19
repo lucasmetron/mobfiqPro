@@ -106,20 +106,6 @@ export default function ProductSelected({ route }: ProductSelectedProps) {
         }
       }
 
-      appsFlyer.onDeepLink((deepLinkData: any) => {
-        console.log("Deep Link Data:", deepLinkData);
-
-        const deepLinkValue =
-          deepLinkData?.deepLinkValue ||
-          deepLinkData?.deepLinkParameters?.screen;
-
-        if (deepLinkValue) {
-          console.log("Navigate to screen:", deepLinkValue);
-        } else {
-          console.warn("Deep link value not found.");
-        }
-      });
-
       return () => {
         unsubscribe();
       };

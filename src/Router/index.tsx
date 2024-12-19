@@ -6,6 +6,7 @@ import * as Linking from "expo-linking";
 import StackMain from "./StackMain/StackMain";
 import { getHome } from "utils/functions";
 import DataHomeContext from "context/useHomeContext";
+import AppsFlyer from "components/AppsFlyer";
 
 const prefix = Linking.createURL("/");
 
@@ -38,7 +39,10 @@ const Router: React.FC = () => {
           source={require("../../assets/intialImg.jpg")}
         />
       ) : (
-        <StackMain />
+        <>
+          <AppsFlyer />
+          <StackMain />
+        </>
       )}
     </NavigationContainer>
   );

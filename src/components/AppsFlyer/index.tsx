@@ -1,18 +1,28 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import appsFlyer from "react-native-appsflyer";
+import { campaignProductSelected } from "./functions";
 
 const AppsFlyer: React.FC = () => {
+  const navigation: any = useNavigation();
+
   // Start AppsFlyer SDK
   useEffect(() => {
     //DeepLink
-    appsFlyer.onDeepLink((deepLinkData: any) => {
-      console.log("Deep Link Data:", deepLinkData);
+    appsFlyer.onDeepLink((deepLinkData) => {
+      const deepLinkValue = deepLinkData?.data;
 
-      const deepLinkValue =
-        deepLinkData?.deepLinkValue || deepLinkData?.deepLinkParameters?.screen;
+      if (deepLinkValue !== null && deepLinkValue?.deep_link_value) {
+        //campaign of product selected
+        if (
+          deepLinkValue?.deep_link_value &&
+          deepLinkValue?.deep_link_value.includes("mobfiqpro://product/")
+        ) {
+          campaignProductSelected(deepLinkValue, navigation);
+        }
 
-      if (deepLinkValue) {
-        console.log("Navigate to screen:", deepLinkValue);
+        //another campaingns bellow
+        //...
       } else {
         console.warn("Deep link value not found.");
       }

@@ -48,7 +48,6 @@ export default function App() {
               <ProductsListProvider>
                 <HeaderDefaultProvider>
                   <DataHomeProvider>
-                    <AppsFlyer />
                     <Router />
                     <StatusBar
                       style="dark"
