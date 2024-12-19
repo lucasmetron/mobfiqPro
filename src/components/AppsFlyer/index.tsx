@@ -6,8 +6,6 @@ import { campaignProductSelected } from "./functions";
 const AppsFlyer: React.FC = () => {
   const navigation: any = useNavigation();
 
-  console.log("process.env.TOKEN_APPS_FLYER: ", process.env.TOKEN_APPS_FLYER);
-
   // Start AppsFlyer SDK
   useEffect(() => {
     //DeepLink
